@@ -1,0 +1,15 @@
+
+.govco-logo-alcaldia {
+  height: 120px;
+  content: url('./../../../../assets/images/ALCALDIA.png');
+}
+
+@media only screen and (max-width: 500px) {
+  .govco-logo-alcaldia {
+    height: 80px; /* Mantiene la proporción de la imagen */
+  }
+}
+
+
+
+
