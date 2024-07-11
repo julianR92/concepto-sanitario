@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+/* Verdana-Regular */
+@font-face {
+  font-family: 'Verdana-Regular';
+  src: url('./assets/fonts/Verdana/static/Verdana-Regular.ttf');
+}
+
+/* Verdana-Bold */
+@font-face {
+  font-family: 'Verdana-Bold';
+  src: url('./assets/fonts/Verdana/static/Verdana-Bold.ttf');
+}
+
+/* Nunito_Sans-Regular */
+@font-face {
+  font-family: 'Nunito_Sans-Regular';
+  src: url('./assets/fonts/Nunito_Sans/static/NunitoSans-Regular.ttf');
+}
+
+/* Fuente iconografica */
+@font-face {
+  font-family: "govco-fontv5";
+  src: url("./assets/icons/fonts/gov-co-font.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}

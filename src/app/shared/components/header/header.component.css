@@ -1,0 +1,17 @@
+
+
+.cabecera-govco .barra-logos-govco .logo_alcaldia {
+  content: url('./../../../../assets/images/ALCALDIA.png');
+  height: 100px;
+  width: auto;
+  display: inline-block;
+}
+
+@media only screen and (max-width: 500px) {
+  .cabecera-govco .barra-logos-govco .logo_alcaldia {
+    height: 60px; /* Mantiene la proporción de la imagen */
+  }
+}
+
+
+
