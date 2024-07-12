@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import localeEs from '@angular/common/locales/es-CO';
 import {registerLocaleData} from '@angular/common'
 import { SharedModule } from './shared/shared.module';
+import { MainModule } from './main/main.module';
 registerLocaleData(localeEs);
 
 @NgModule({
@@ -19,7 +20,8 @@ registerLocaleData(localeEs);
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    MainModule
   ],
   providers: [
     {provide: LOCALE_ID,useValue:'es-CO'}

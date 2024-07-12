@@ -13,10 +13,5 @@ export class AppComponent implements OnInit {
    }
   title = 'Concepto Sanitario';
 
-  public breadcrumbItems = [
-    { label: 'Inicio', url: 'https://www.bucaramanga.gov.co/' },
-    { label: 'Concepto Sanitario'},
-
-  ];
 
 }
