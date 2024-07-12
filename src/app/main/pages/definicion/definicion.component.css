@@ -1,0 +1,12 @@
+:host .p-fieldset-legend-text {
+  color: #000000; /* Change text color */
+  font-weight: bold; /* Change font weight */
+  font-size: 18px;
+  font-family: 'Nunito_Sans-Bold';
+}
+
+:host .p-fieldset{
+  border-color: #0943B5 ;
+  border-style: solid 2px;
+}
+
