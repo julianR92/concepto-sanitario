@@ -1,6 +1,4 @@
 @import url('https://fonts.cdnfonts.com/css/verdana');
-@import "primeicons/primeicons.css";
-
 :host .p-fieldset-legend-text {
   color: #4C4C4C; /* Change text color */
   font-weight: bold; /* Change font weight */
@@ -9,8 +7,7 @@
 }
 
 :host .p-fieldset{
-  border-color: #0943B5 ;
+  border-color: #FDAA29 ;
   border-style: solid 2px;
 }
-
 

@@ -14,7 +14,7 @@ export class PrincipalComponent {
 
   ];
 
-  public titulo:string = 'CONCEPTO SANITARIO'
+  public titulo:string = 'TRAMITE DE CONCEPTO SANITARIO'
   public subitulo :string = 'Alcaldía de Bucaramanga'
 
 }

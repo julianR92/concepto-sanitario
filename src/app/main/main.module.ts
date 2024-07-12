@@ -6,6 +6,9 @@ import { SharedModule } from '../shared/shared.module';
 import { DescripcionComponent } from './pages/descripcion/descripcion.component';
 import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 import { DefinicionComponent } from './pages/definicion/definicion.component';
+import { AcordionComponent } from './pages/acordion/acordion.component';
+import { ButtonsComponent } from './pages/buttons/buttons.component';
+import { InformacionComponent } from './pages/informacion/informacion.component';
 
 
 
@@ -13,7 +16,10 @@ import { DefinicionComponent } from './pages/definicion/definicion.component';
   declarations: [
     PrincipalComponent,
     DescripcionComponent,
-    DefinicionComponent
+    DefinicionComponent,
+    AcordionComponent,
+    ButtonsComponent,
+    InformacionComponent
   ],
   imports: [
     CommonModule,
