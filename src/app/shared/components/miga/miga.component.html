@@ -6,7 +6,11 @@
         <ul class="breadcrumb-govco">
           <li *ngFor="let item of items; let last = last" class="breadcrumb-item-govco" [class.active]="last" [attr.aria-current]="last ? 'page' : null">
             <ng-container *ngIf="!last">
-              <a [href]="item.url">{{ item.label }}</a>
+              <a routerLink="{{item.url}}" *ngIf="item.ngLink; else otherLink">{{ item.label }}</a>
+              <ng-template #otherLink>
+                <a [href]="item.url">{{ item.label }}</a>
+              </ng-template>
+
             </ng-container>
             <ng-container *ngIf="last">
               {{ item.label }}

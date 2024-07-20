@@ -1,0 +1,21 @@
+.actualizaImg{
+  content: url('./../../../../assets/images/actualiza.jpg');
+}
+.autoImg{
+  content: url('./../../../../assets/images/autoevaluacion.jpg');
+}
+.visitaImg{
+  content: url('./../../../../assets/images/solicita-visita.jpg');
+}
+.cursor{
+  cursor: pointer;
+}
+.borderStyle{
+  border: .063rem solid #B5C7E9
+}
+@media (max-width: 600px) {
+  .mx-xs-2 {
+    margin-left: 0.5rem !important;
+    margin-right: 0.5rem !important;
+  }
+}

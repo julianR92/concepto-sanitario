@@ -28,7 +28,8 @@ import { InformacionComponent } from './pages/informacion/informacion.component'
     PrimeNgModule
   ],
   exports:[
-    PrincipalComponent
+    PrincipalComponent,
+    DescripcionComponent
   ]
 })
 export class MainModule { }
