@@ -7,6 +7,7 @@ import { PrincipalComponent } from './pages/principal/principal.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { MainModule } from '../main/main.module';
+import { ValidarComponent } from './pages/validar/validar.component';
 
 
 
@@ -15,7 +16,8 @@ import { MainModule } from '../main/main.module';
     VisitaComponent,
     CrearComponent,
     ActualizarComponent,
-    PrincipalComponent
+    PrincipalComponent,
+    ValidarComponent
   ],
   imports: [
     CommonModule,

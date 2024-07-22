@@ -4,11 +4,16 @@ import { PrincipalComponent } from './pages/principal/principal.component';
 import { CrearComponent } from './pages/crear/crear.component';
 import { ActualizarComponent } from './pages/actualizar/actualizar.component';
 import { VisitaComponent } from './pages/visita/visita.component';
+import { ValidarComponent } from './pages/validar/validar.component';
 
 const routes: Routes = [
   {
     path: '',
     component: PrincipalComponent,
+  },
+  {
+    path: 'validar',
+    component: ValidarComponent,
   },
   {
     path: 'registrar',

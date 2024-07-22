@@ -1,0 +1,20 @@
+<general-miga [items]="breadcrumbItems"></general-miga>
+<titulo-tramite [title]="titulo" [subtitle]="subitulo" class="mt-2"></titulo-tramite>
+<div class="row">
+  <form action="" class="">
+    <h6 class="text-center mt-4">Primero validemos tu identificación</h6>
+    <div class="col-md-4">
+      <div class="entradas-de-texto-govco m-2">
+        <label for="nit">Nit*(sin digito de verificación)</label>
+        <input type="text" id="nit" aria-describedby="note2" placeholder="Ejemplo: 890201222"
+          value="">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <button type="submit" class="btn-govco outline-secundary-btn-govco icon-btn-govco">
+        <span class="govco-svg govco-check" aria-hidden="true"></span>
+        <span>Validar</span>
+      </button>
+    </div>
+  </form>
+</div>
