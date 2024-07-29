@@ -1,0 +1,43 @@
+<general-miga [items]="breadcrumbItems"></general-miga>
+<titulo-tramite
+  [title]="titulo"
+  [subtitle]="subitulo"
+  class="mt-2"
+></titulo-tramite>
+
+
+<div class="row animate__animated animate__fadeIn animate__slow" *ngIf="!isLoading">
+  <form class="form" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <h6 class="text-center mt-4">Escoge tu establecimiento verifica Bien tus Datos</h6>
+    <div class="col-md-12">
+      <div class="entradas-de-texto-govco m-2">
+        <label for="nit">Establecimiento*</label>
+        <select class="form-select" aria-label="Default select example" formControlName="placa">
+          <option value="">Seleccione...</option>
+          <option *ngFor="let establecimiento of dataEstblecimentos" [value]="establecimiento.MaeNum">{{establecimiento.MaeProCod | removeZeros}} -- {{establecimiento.MaeProNom}} -- {{establecimiento.MaeDir}}</option>
+        </select>
+        <span *ngIf="isValidField('placa')" class="form-text text-danger">
+          {{ getFieldError("placa") }}
+        </span>
+      </div>
+
+  </div>
+  <div class="col-md-4 mt-3">
+    <button
+    type="submit"
+    class="btn-govco outline-secundary-btn-govco icon-btn-govco"
+  >
+    <span class="govco-svg govco-angle-double-right" aria-hidden="true"></span>
+    <span>Ir a Registrar</span>
+  </button>
+</div>
+</form>
+<div class="col-md-12 mt-3">
+ <a routerLink="/establecimientos/validar" class="btn btn-link">Cancelar</a>
+</div>
+</div>
+<!-- laoder -->
+<div class="mt-8" *ngIf="isLoading">
+  <loader-gov></loader-gov>
+</div>
+

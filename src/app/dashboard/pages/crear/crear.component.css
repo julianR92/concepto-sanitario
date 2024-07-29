@@ -1,0 +1,5 @@
+hr {
+  border: 0; /* Elimina los bordes por defecto */
+  height: 3px; /* Ajusta el grosor de la línea */
+  background-color: #0943B5; /* Cambia el color de la línea (rojo en este caso) */
+}

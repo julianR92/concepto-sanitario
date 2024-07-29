@@ -8,6 +8,8 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { MainModule } from '../main/main.module';
 import { ValidarComponent } from './pages/validar/validar.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SelectEstablecimientosComponent } from './pages/select-establecimientos/select-establecimientos.component';
 
 
 
@@ -17,13 +19,15 @@ import { ValidarComponent } from './pages/validar/validar.component';
     CrearComponent,
     ActualizarComponent,
     PrincipalComponent,
-    ValidarComponent
+    ValidarComponent,
+    SelectEstablecimientosComponent
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     SharedModule,
-    MainModule
+    MainModule,
+    ReactiveFormsModule
   ],
 
 })

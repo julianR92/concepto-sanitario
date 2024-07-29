@@ -5,6 +5,7 @@ import { CrearComponent } from './pages/crear/crear.component';
 import { ActualizarComponent } from './pages/actualizar/actualizar.component';
 import { VisitaComponent } from './pages/visita/visita.component';
 import { ValidarComponent } from './pages/validar/validar.component';
+import { SelectEstablecimientosComponent } from './pages/select-establecimientos/select-establecimientos.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'registrar',
     component: CrearComponent,
+  },
+  {
+    path: 'escoge',
+    component: SelectEstablecimientosComponent,
   },
   {
     path: 'actualizar',

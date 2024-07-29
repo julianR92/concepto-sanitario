@@ -1,1 +1,497 @@
-<p>crear works!</p>
+<general-miga [items]="breadcrumbItems"></general-miga>
+<titulo-tramite
+  [title]="titulo"
+  [subtitle]="subitulo"
+  class="mt-2"
+></titulo-tramite>
+
+<form action="" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+<div class="row pt-4 row animate__animated animate__fadeIn animate__slow">
+  <div class="col-md-12 mt-3 text-end">
+    <a routerLink="/establecimientos/validar" class="btn btn-link">Cancelar</a>
+   </div>
+     <p class="text1-govco text-center">Continuemos la inscripción</p>
+
+     <h6>Datos Basicos del Establecimiento</h6>
+      <hr>
+    <div class="col-md-2">
+        <div class="entradas-de-texto-govco m-2">
+          <label for="nit">NIT*</label>
+           <input type="text" name="nit" id="nit"  formControlName="nit" readonly>
+          <span *ngIf="isValidField('nit')" class="form-text text-danger">
+            {{ getFieldError("nit") }}
+          </span>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="entradas-de-texto-govco m-2">
+          <label for="razon_social">Razon Social*</label>
+           <input type="text" name="razon_social" id="razon_social"  formControlName="razon_social" [attr.readonly]="dataCec.length > 0 && dataCec[0].MaeProNom ? true : null">
+          <span *ngIf="isValidField('razon_social')" class="form-text text-danger">
+            {{ getFieldError("razon_social") }}
+          </span>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="entradas-de-texto-govco m-2">
+          <label for="nombre_comercial">Nombre Comercial</label>
+           <input type="text" name="nombre_comercial" id="nombre_comercial"  formControlName="nombre_comercial">
+          <span *ngIf="isValidField('nombre_comercial')" class="form-text text-danger" autocomplete="off">
+            {{ getFieldError("nombre_comercial") }}
+          </span>
+        </div>
+    </div>
+    <div class="col-md-3 mt-2">
+        <div class="entradas-de-texto-govco">
+          <label for="registro_iyc">Reg Ind Y Comercio</label>
+           <input type="text" name="registro_iyc" id="registro_iyc"  formControlName="registro_iyc" [attr.readonly]="dataCec.length > 0 && dataCec[0].MaeNum ? true : null">
+          <span *ngIf="isValidField('registro_iyc')" class="form-text text-danger" autocomplete="off">
+            {{ getFieldError("registro_iyc") }}
+          </span>
+        </div>
+    </div>
+    <div class="col-md-3 mt-2">
+        <div class="entradas-de-texto-govco">
+          <label for="matricula_mercantil">Matricula Mercantil</label>
+           <input type="text" name="matricula_mercantil" id="matricula_mercantil"  formControlName="matricula_mercantil" [attr.readonly]="dataCec.length > 0 && dataCec[0].RadMatMer ? true : null" autocomplete="off">
+          <span *ngIf="isValidField('matricula_mercantil')" class="form-text text-danger">
+            {{ getFieldError("matricula_mercantil") }}
+          </span>
+        </div>
+    </div>
+    <div class="col-md-6 mt-2">
+        <div class="entradas-de-texto-govco">
+          <label for="matricula_mercantil">Actividad Economica*</label>
+          <select class="form-select" aria-label="Default select example" name="actividad_economica" formControlName="actividad_economica">
+          <option value="">Seleccione...</option>
+          <option *ngFor="let actividad of actividades" [value]="actividad.id">{{actividad.descripcion}}</option>
+         </select>
+          <span *ngIf="isValidField('actividad_economica')" class="form-text text-danger">
+            {{ getFieldError("actividad_economica") }}
+          </span>
+        </div>
+    </div>
+    <div class="col-md-3 mt-2">
+      <div class="entradas-de-texto-govco">
+        <label for="calle">Telefono*</label>
+        <input type="text" name="telefono" id="telefono"  formControlName="telefono" autocomplete="off" placeholder="EJ:3162818231" (keypress)="onlyNumbers($event)">
+        <span *ngIf="isValidField('telefono')" class="form-text text-danger">
+          {{ getFieldError("telefono") }}
+        </span>
+    </div>
+    </div>
+    <div class="col-md-3 mt-2">
+      <div class="entradas-de-texto-govco">
+        <label for="calle">Correo Electronico*</label>
+        <input type="text" name="correo_electronico" id="correo_electronico"  formControlName="correo_electronico" autocomplete="off" placeholder="EJ:andres@gmail.com"  #correo_electronico
+        msjError="Debe ser un formato de correo valido">
+        <span *ngIf="isValidField('correo_electronico')" class="form-text text-danger" >
+          {{ getFieldError("correo_electronico", correo_electronico.getAttribute('msjError')) }}
+        </span>
+    </div>
+    </div>
+    <div class="col-md-3 mt-2">
+      <div class="entradas-de-texto-govco">
+        <label for="calle">Confirma Tu Correo Electronico*</label>
+        <input type="text" name="confirme_email" id="confirme_email"  formControlName="confirme_email" (paste)="(false)" autocomplete="off" placeholder="EJ:andres@gmail.com"  #confirme_email
+        >
+        <span *ngIf="isValidField('confirme_email')" class="form-text text-danger" >
+          {{ getFieldError("confirme_email", confirme_email.getAttribute('msjError')) }}
+        </span>
+    </div>
+    </div>
+    <h6 class="mt-5">Confirmemos la dirección del establecimiento</h6>
+
+    <hr>
+    <div class="col-md-2">
+        <div class="entradas-de-texto-govco">
+          <label for="calle">Calle-Carrera*</label>
+          <select class="form-select" aria-label="Default select example" name="calle" formControlName="calle">
+          <option value="">Seleccione...</option>
+          <option *ngFor="let calle of calles" [value]="calle?.ParDes">{{calle?.ParDes}}</option>
+         </select>
+          <span *ngIf="isValidField('calle')" class="form-text text-danger">
+            {{ getFieldError("calle") }}
+          </span>
+    </div>
+    </div>
+    <div class="col-md-2">
+        <div class="entradas-de-texto-govco">
+          <label for="calle">N°- Nombre*</label>
+          <input type="text" name="numero_nombre" id="numero_nombre"  formControlName="numero_nombre" autocomplete="off" placeholder="EJ :25">
+          <span *ngIf="isValidField('numero_nombre')" class="form-text text-danger">
+            {{ getFieldError("numero_nombre") }}
+          </span>
+    </div>
+    </div>
+    <div class="col-md-2">
+      <div class="entradas-de-texto-govco">
+        <label for="calle">Letra</label>
+        <select class="form-select" aria-label="Default select example" name="letra_uno" formControlName="letra_uno">
+        <option value="">Seleccione...</option>
+        <option *ngFor="let letra of letters" [value]="letra?.ParNom">{{letra.ParNom}}</option>
+       </select>
+        <span *ngIf="isValidField('letra_uno')" class="form-text text-danger">
+          {{ getFieldError("letra_uno") }}
+        </span>
+  </div>
+  </div>
+  <div class="col-md-1">
+    <div class="entradas-de-texto-govco">
+      <label for="calle">Numero*</label>
+      <input type="text" name="numero_uno" id="numero_uno"  formControlName="numero_uno" autocomplete="off" placeholder="EJ:34" (keypress)="onlyNumbers($event)">
+      <span *ngIf="isValidField('numero_uno')" class="form-text text-danger">
+        {{ getFieldError("numero_uno") }}
+      </span>
+</div>
+</div>
+<div class="col-md-2">
+  <div class="entradas-de-texto-govco">
+    <label for="calle">Letra</label>
+    <select class="form-select" aria-label="Default select example" name="letra_dos" formControlName="letra_dos">
+    <option value="">Seleccione...</option>
+    <option *ngFor="let letra of letters" [value]="letra?.ParNom">{{letra.ParNom}}</option>
+   </select>
+    <span *ngIf="isValidField('letra_dos')" class="form-text text-danger">
+      {{ getFieldError("letra_dos") }}
+    </span>
+</div>
+</div>
+<div class="col-md-1">
+  <div class="entradas-de-texto-govco">
+    <label for="calle">Numero*</label>
+    <input type="text" name="numero_dos" id="numero_dos"  formControlName="numero_dos" autocomplete="off" placeholder="EJ:34" (keypress)="onlyNumbers($event)">
+    <span *ngIf="isValidField('numero_dos')" class="form-text text-danger">
+      {{ getFieldError("numero_dos") }}
+    </span>
+</div>
+</div>
+<div class="col-md-2">
+  <div class="entradas-de-texto-govco">
+    <label for="calle">Letra</label>
+    <select class="form-select" aria-label="Default select example" name="letra_tres" formControlName="letra_tres">
+    <option value="">Seleccione...</option>
+    <option *ngFor="let letra of letters" [value]="letra?.ParNom">{{letra.ParNom}}</option>
+   </select>
+    <span *ngIf="isValidField('letra_tres')" class="form-text text-danger">
+      {{ getFieldError("letra_tres") }}
+    </span>
+</div>
+</div>
+<div class="col-md-12 mt-3">
+  <div class="entradas-de-texto-govco">
+    <label for="calle">Direccion* &nbsp; <small style="color:#0943B5 ;">Visualiza <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#0943b5" d="M9.9 21V11l-3.2 1.69l-.2.03c-.31 0-.57-.12-.76-.32L5 11.63l4.9-4.2c.26-.27.6-.43 1-.43h6.5c.77 0 1.5.7 1.5 1.5v4.36c0 .61-.35 1.14-.85 1.34l-4.94 2.2l-1.21.13V21a1 1 0 0 1-1 1a1 1 0 0 1-1-1m9-16h-8V2h8z"/></svg></small></label>
+    <input type="text" name="direccion" id="direccion"  formControlName="direccion" readonly>
+    <span *ngIf="isValidField('direccion')" class="form-text text-danger">
+      {{ getFieldError("direccion") }}
+    </span>
+</div>
+</div>
+<div class="col-md-4 mt-3">
+  <div class="entradas-de-texto-govco">
+    <label for="calle">Complemento</label>
+    <input type="text" name="complemento_direccion" id="complemento_direccion"  formControlName="complemento_direccion" placeholder="EJ: Conjunto el Roble Apto..">
+    <span *ngIf="isValidField('complemento_direccion')" class="form-text text-danger">
+      {{ getFieldError("complemento_direccion") }}
+    </span>
+  </div>
+</div>
+<div class="col-md-3 mt-3">
+    <div class="entradas-de-texto-govco">
+      <label for="calle">Barrio*</label>
+      <select class="form-select" aria-label="Default select example" name="barrio" formControlName="barrio">
+      <option value="">Seleccione...</option>
+      <option *ngFor="let barrio of barrios" [value]="barrio?.nombre">{{barrio.nombre}}</option>
+     </select>
+      <span *ngIf="isValidField('barrio')" class="form-text text-danger">
+        {{ getFieldError("barrio") }}
+      </span>
+  </div>
+</div>
+
+<div class="col-md-2 mt-3">
+    <div class="entradas-de-texto-govco">
+      <label for="calle">Comuna*</label>
+      <input type="text" name="comuna" id="comuna"  formControlName="comuna" readonly>
+      <span *ngIf="isValidField('comuna')" class="form-text text-danger">
+        {{ getFieldError("comuna") }}
+      </span>
+  </div>
+</div>
+<div class="col-md-3 mt-3">
+  <div class="entradas-de-texto-govco">
+    <label for="calle">Corrgimiento</label>
+    <select class="form-select" aria-label="Default select example" name="corregimiento" formControlName="corregimiento">
+    <option value="">Seleccione...</option>
+    <option *ngFor="let corre of corregimientos" [value]="corre?.nombre">{{corre.nombre}}</option>
+   </select>
+    <span *ngIf="isValidField('corregimiento')" class="form-text text-danger">
+      {{ getFieldError("corregimiento") }}
+    </span>
+</div>
+</div>
+
+<div class="col-md-3 mt-3">
+  <div class="entradas-de-texto-govco">
+    <label for="calle">Ciudad</label>
+    <input type="text" name="municipio" id="municipio"  formControlName="municipio" readonly>
+    <span *ngIf="isValidField('municipio')" class="form-text text-danger">
+      {{ getFieldError("municipio") }}
+    </span>
+  </div>
+</div>
+<div class="col-md-3 mt-3">
+  <div class="entradas-de-texto-govco">
+    <label for="calle">Departamento</label>
+    <input type="text" name="deparatamento" id="deparatamento"  formControlName="deparatamento" readonly>
+    <span *ngIf="isValidField('deparatamento')" class="form-text text-danger">
+      {{ getFieldError("deparatamento") }}
+    </span>
+  </div>
+</div>
+
+<div class="col-md-6"></div>
+
+<h6 class="mt-5">Datos del Propietario</h6><hr>
+
+<div class="col-md-3">
+  <div class="entradas-de-texto-govco m-2">
+    <label for="nom_propietario">Nombre Propietario*</label>
+     <input type="text" name="nom_propietario" id="nom_propietario" placeholder="ej: Andres"  formControlName="nom_propietario" (keypress)="onlyLetters($event)" #nomPropietario msjError="Solo se permiten letras">
+    <span *ngIf="isValidField('nom_propietario')" class="form-text text-danger" autocomplete="off">
+      {{ getFieldError("nom_propietario", nomPropietario.getAttribute('msjError')) }}
+    </span>
+  </div>
+</div>
+<div class="col-md-3">
+  <div class="entradas-de-texto-govco m-2">
+    <label for="ape_propietario">Apellido Propietario*</label>
+     <input type="text" name="ape_propietario" id="ape_propietario" placeholder="ej: Parra" formControlName="ape_propietario" (keypress)="onlyLetters($event)"  msjError="Solo se permiten letras">
+    <span *ngIf="isValidField('ape_propietario')" class="form-text text-danger" autocomplete="off">
+      {{ getFieldError("ape_propietario", nomPropietario.getAttribute('msjError')) }}
+    </span>
+  </div>
+</div>
+<div class="col-md-3">
+  <div class="entradas-de-texto-govco m-2">
+    <label for="calle">Tipo de documento*</label>
+    <select class="form-select" aria-label="Default select example" name="tipo_documento_pro" formControlName="tipo_documento_pro">
+    <option value="">Seleccione...</option>
+    <option value="C.C.">Cedula de ciudananía</option>
+    <option value="C.E.">Cedula de extranejeria</option>
+    <option value="NIT">NIT</option>
+   </select>
+    <span *ngIf="isValidField('tipo_documento_pro')" class="form-text text-danger">
+      {{ getFieldError("tipo_documento_pro") }}
+    </span>
+</div>
+</div>
+<div class="col-md-3">
+  <div class="entradas-de-texto-govco m-2">
+    <label for="calle">N° Documento *</label>
+    <input type="text" name="documento_propietario" id="documento_propietario"  formControlName="documento_propietario" autocomplete="off" placeholder="EJ: 13765623" (keypress)="onlyNumbers($event)" #docPropietario msjError="Solo se permiten numeros" >
+    <span *ngIf="isValidField('documento_propietario')" class="form-text text-danger">
+      {{ getFieldError("documento_propietario",  docPropietario.getAttribute('msjError')) }}
+    </span>
+</div>
+</div>
+<h6 class="mt-5">Datos del Representante Legal</h6><hr>
+
+<div class="col-md-3">
+  <div class="entradas-de-texto-govco m-2">
+    <label for="nom_representante">Nombre Representante*</label>
+     <input type="text" name="nom_representante" id="nom_representante" placeholder="ej: Edwin"  formControlName="nom_representante" (keypress)="onlyLetters($event)" #nomRepre msjError="Solo se permiten letras">
+    <span *ngIf="isValidField('nom_representante')" class="form-text text-danger" autocomplete="off">
+      {{ getFieldError("nom_representante", nomPropietario.getAttribute('msjError')) }}
+    </span>
+  </div>
+</div>
+<div class="col-md-3">
+  <div class="entradas-de-texto-govco m-2">
+    <label for="ape_representante">Apellido Representante*</label>
+     <input type="text" name="ape_representante" id="ape_representante" placeholder="ej: Perez" formControlName="ape_representante" (keypress)="onlyLetters($event)" #nomRepre msjError="Solo se permiten letras">
+    <span *ngIf="isValidField('ape_representante')" class="form-text text-danger" autocomplete="off">
+      {{ getFieldError("ape_representante", nomPropietario.getAttribute('msjError')) }}
+    </span>
+  </div>
+</div>
+<div class="col-md-3">
+  <div class="entradas-de-texto-govco m-2">
+    <label for="calle">Tipo de documento*</label>
+    <select class="form-select" aria-label="Default select example" name="tipo_documento_repre" formControlName="tipo_documento_repre">
+    <option value="">Seleccione...</option>
+    <option value="C.C.">Cedula de ciudananía</option>
+    <option value="C.E.">Cedula de extranejeria</option>
+    <option value="NIT">NIT</option>
+   </select>
+    <span *ngIf="isValidField('tipo_documento_repre')" class="form-text text-danger">
+      {{ getFieldError("tipo_documento_repre") }}
+    </span>
+</div>
+</div>
+<div class="col-md-3">
+  <div class="entradas-de-texto-govco m-2">
+    <label for="calle">N° Documento *</label>
+    <input type="text" name="documento_repre" id="documento_repre"  formControlName="documento_repre" autocomplete="off" placeholder="EJ: 17453243" (keypress)="onlyNumbers($event)" #docRepre msjError="Solo se permiten numeros" >
+    <span *ngIf="isValidField('documento_repre')" class="form-text text-danger">
+      {{ getFieldError("documento_repre",  docRepre.getAttribute('msjError')) }}
+    </span>
+</div>
+</div>
+<div class="col-md-4">
+  <div class="entradas-de-texto-govco m-2">
+    <label for="calle">Correo Electronico Representante</label>
+    <input type="text" name="correo_representante" id="correo_representante"  formControlName="correo_representante" autocomplete="off" placeholder="EJ: edwin.perez@gmail.com" #emailRepre msjError="Debe ser un formato de correo valido" >
+    <span *ngIf="isValidField('correo_representante')" class="form-text text-danger">
+      {{ getFieldError("correo_representante",  emailRepre.getAttribute('msjError')) }}
+    </span>
+</div>
+</div>
+<div class="col-md-8"></div>
+<h6 class="mt-5">Datos Adicionales</h6><hr>
+
+<div class="col-md-6">
+  <div class="entradas-de-texto-govco m-2">
+    <label for="calle">Direccion de Notificación Fisica</label>
+    <input type="text" name="direccion_notificacion" id="direccion_notificacion"  formControlName="direccion_notificacion" autocomplete="off" placeholder="EJ: Calle 33# 22-10" #dirFisica msjError="Solo se se aceptan letras, numeros, y ,.-#" >
+    <span *ngIf="isValidField('direccion_notificacion')" class="form-text text-danger">
+      {{ getFieldError("direccion_notificacion",  dirFisica.getAttribute('msjError')) }}
+    </span>
+</div>
+</div>
+<div class="col-md-3">
+  <div class="entradas-de-texto-govco m-2">
+    <label for="calle">Departamento</label>
+    <select class="form-select" aria-label="Default select example" name="departamento_notificacion" formControlName="departamento_notificacion">
+    <option value="">Seleccione...</option>
+    <option *ngFor="let departamento of departamentos " [value]="departamento?.departamento">{{departamento?.departamento}}</option>
+   </select>
+    <span *ngIf="isValidField('departamento_notificacion')" class="form-text text-danger">
+      {{ getFieldError("departamento_notificacion") }}
+    </span>
+</div>
+</div>
+<div class="col-md-3">
+  <div class="entradas-de-texto-govco m-2">
+    <label for="calle">Municipio</label>
+    <select class="form-select" aria-label="Default select example" name="municipio_notificacion" formControlName="municipio_notificacion">
+    <option value="">Seleccione...</option>
+    <option *ngFor="let municipio of municipios " [value]="municipio?.municipio">{{municipio?.municipio}}</option>
+   </select>
+    <span *ngIf="isValidField('municipio_notificacion')" class="form-text text-danger">
+      {{ getFieldError("municipio_notificacion") }}
+    </span>
+</div>
+</div>
+<div class="col-md-3 mt-3">
+  <p>
+    ¿ Autorizas notificación electronica ?
+  </p>
+  <div class="form-check form-check-inline">
+    <div class="radio-seleccion-govco">
+      <input id="opt2" type="radio" name="autoriza_notificaciones" formControlName="autoriza_notificaciones" value="1"
+      />
+      <label for="opt2"> SI</label>
+    </div>
+  </div>
+  <div class="form-check form-check-inline">
+    <div class="radio-seleccion-govco">
+      <input id="opt2" type="radio" name="autoriza_notificaciones" formControlName="autoriza_notificaciones" value="0"  />
+      <label for="opt2"> NO</label>
+    </div>
+  </div>
+
+    <span *ngIf="isValidField('autoriza_notificaciones')" class="form-text text-danger">
+      {{ getFieldError("autoriza_notificaciones") }}
+    </span>
+</div>
+<div class="col-md-2 mt-3">
+  <p *ngIf="myForm.value.autoriza_notificaciones=='1'" class="h6 text-justify">Autorizas el envió de notificaciones electrónicas al correo <span class="text-primary">{{myForm.value.correo_electronico|| ''}}</span></p>
+  <p *ngIf="myForm.value.autoriza_notificaciones=='0'" class="h6 text-justify">No autorizas el envio de notificaciones electronicas, por lo tanto no te llegará correo de esta inscripción</p>
+</div>
+<div class="col-md-4 mt-3 ">
+  <div class="entradas-de-texto-govco">
+    <label for="calle">Codigo CIIU</label>
+    <select class="form-select" aria-label="Default select example" name="id_ciuu" formControlName="id_ciuu">
+    <option value="">Seleccione...</option>
+    <option *ngFor="let codigo of ciiu" [value]="codigo?.Codigo">{{codigo?.Codigo}} | {{codigo?.CodDes}}</option>
+   </select>
+    <span *ngIf="isValidField('id_ciuu')" class="form-text text-danger">
+      {{ getFieldError("id_ciuu") }}
+    </span>
+</div>
+</div>
+<div class="col-md-3 mt-3">
+  <div class="entradas-de-texto-govco">
+    <label for="calle">N° de Trabajadores</label>
+    <input type="text" name="numero_trabajadores" id="numero_trabajadores"  formControlName="numero_trabajadores" autocomplete="off" placeholder="EJ: 100" #dirFisica msjError="Solo se permiten numeros" (keypress)="onlyNumbers($event)">
+
+    <span *ngIf="isValidField('numero_trabajadores')" class="form-text text-danger">
+      {{ getFieldError("numero_trabajadores") }}
+    </span>
+</div>
+</div>
+<div class="col-md-6 mt-3">
+  <div class="entradas-de-texto-govco">
+    <label for="calle">Horario</label>
+    <input type="text" name="horario" id="horario"  formControlName="horario" autocomplete="off" placeholder="EJ: Lunes a viernes 8 a 6 " #horario msjError="Solo se permiten numeros letras, numeros, y ,.-#:;" >
+    <span *ngIf="isValidField('horario')" class="form-text text-danger">
+      {{ getFieldError("horario", horario.getAttribute('msjError')) }}
+    </span>
+</div>
+</div>
+
+<div class="col"></div>
+<h6 class="mt-5">Aviso de privacidad y autorización tratamiento de datos personales</h6><hr>
+<div class="col-md-4">
+  <div class="checkbox-seleccion-govco">
+  <a class="link-tipografia-govco" href="https://www.bucaramanga.gov.co/autorizacion-de-tratamiento-de-datos-personales/"  target="_blank" ><h6 class="text-primary">Autorizo el tratamiento de datos personales<input id="opt1" type="checkbox" name="tratamiento_datos" formControlName="tratamiento_datos" /></h6></a>
+
+</div>
+<span *ngIf="isValidField('tratamiento_datos')" class="form-text text-danger">
+  {{ getFieldError("tratamiento_datos") }}
+</span>
+</div>
+<div class="col-md-8"></div>
+<div class="col-md-4">
+  <div class="checkbox-seleccion-govco">
+  <a class="link-tipografia-govco" href="https://www.bucaramanga.gov.co/wp-content/uploads/2023/12/Resolucion-350-2023-politica-de-datos-personales-1.pdf"  target="_blank" ><h6 class="text-primary">Acepto términos y condiciones<input id="opt2" type="checkbox"   name="acepto_terminos" formControlName="acepto_terminos" /></h6></a>
+
+</div>
+<span *ngIf="isValidField('acepto_terminos')" class="form-text text-danger">
+  {{ getFieldError("acepto_terminos") }}
+</span>
+</div>
+<div class="col-md-8"></div>
+<div class="col-md-12">
+  <div class="checkbox-seleccion-govco">
+  <p class="text-justify"> <input id="opt3" type="checkbox"  name="confirmo_mayor_edad" formControlName="confirmo_mayor_edad" />Confirmo que soy mayor de edad y con plena capacidad para diligenciar el presente formulario. Así mismo declaro que la información aquí suministrada corresponde a la verdad. Declaro que he leído, entiendo y acepto las políticas de tratamiento de los datos que suministro, de conformidad con la Ley 1581 de 2012 y demás normas concordantes</p>
+</div>
+<span *ngIf="isValidField('confirmo_mayor_edad')" class="form-text text-danger">
+  {{ getFieldError("confirmo_mayor_edad") }}
+</span>
+</div>
+
+<div class="col-md-6 mt-4">
+  <button
+  type="submit"
+  class="btn-govco outline-secundary-btn-govco icon-btn-govco"
+>
+<span class="govco-svg govco-check-circle"></span>
+  <span>Inscribirme</span>
+</button>
+</div>
+<div class="col-md-6 mt-4 text-end">
+  <a routerLink="/establecimientos/validar" class="btn btn-link">Cancelar</a>
+</div>
+
+
+
+</div>
+
+
+
+  <div class="row mt-4">
+    {{myForm.value |  json}}
+  </div>
+</form>

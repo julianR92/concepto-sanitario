@@ -10,6 +10,11 @@ import localeEs from '@angular/common/locales/es-CO';
 import {registerLocaleData} from '@angular/common'
 import { SharedModule } from './shared/shared.module';
 import { MainModule } from './main/main.module';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HmacInterceptor } from './interceptors/hmac.interceptors';
+import { ErrorInterceptor } from './interceptors/error.interceptors';
+
+
 registerLocaleData(localeEs);
 
 @NgModule({
@@ -25,7 +30,12 @@ registerLocaleData(localeEs);
     MainModule
   ],
   providers: [
-    {provide: LOCALE_ID,useValue:'es-CO'}
+    {provide: LOCALE_ID,useValue:'es-CO'},
+    provideHttpClient(withInterceptorsFromDi()),
+    { provide: HTTP_INTERCEPTORS, useClass: HmacInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+
+
   ],
   bootstrap: [AppComponent]
 })
