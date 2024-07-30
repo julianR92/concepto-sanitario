@@ -17,6 +17,8 @@ import {
 } from '../../interfaces/Options.interface';
 import { MaeicService } from '../../services/maeic.service';
 import { catchError, distinctUntilChanged, map, of, tap } from 'rxjs';
+import { environments } from '../../../../environments/environments';
+
 
 @Component({
   selector: 'app-crear',
@@ -36,6 +38,7 @@ export class CrearComponent implements OnInit {
   public letras: Parametro[] = [];
   public indicaciones: Parametro[] = [];
   public comuna: Comuna | null = null;
+  public siteKey:string = environments.siteKey ;
 
 
   constructor(
@@ -330,7 +333,8 @@ export class CrearComponent implements OnInit {
       this.myForm.markAllAsTouched();
       return;
     }
-    console.log(this.myForm.value)
+    // const response = (window as any).grecaptcha.getResponse();
+
 
 
 
