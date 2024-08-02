@@ -52,16 +52,16 @@
     }
     p#barra_progreso {
         font-size: 0.65rem !important;
-    }  
+    }
     .breadcrumb-text{
         font-size: 0.8rem!important;
     }
     .text-miga{
         font-size: 0.8rem!important;
-    }    
+    }
     .text-discapacidad{
         font-size: 0.6rem!important;
-    }     
+    }
 
     .govco-icon-shortr-arrow::before {
         content: "\e91c";
@@ -72,7 +72,7 @@
 }
 
 .btn-examinar{
-  
+
     background-color: #3366CC!important;
     color: white!important;
 
@@ -84,7 +84,7 @@
 
 /* ESTILOS GOV-CO SELECTS */
 
-.select2-dropdown { 
+.select2-dropdown {
     border: 1px solid #3366cc!important;
    }
    .select2-container--default .select2-search--dropdown .select2-search__field {
@@ -98,23 +98,23 @@
        background-color: #E6EFFD !important;
        color: #4B4B4B!important;
    }
-   
+
    .select2-container--default .select2-results__option[aria-selected=true] {
        background-color: #3366cc!important;
        color: white!important;
    }
-   
+
    .select2-container--default .select2-selection--single .select2-selection__arrow b {
        border-color: #3366CC transparent transparent transparent;
    }
-   
+
    .select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {
        border-color: transparent transparent #3366CC transparent;
-   
+
    }
 
 @media only screen and (max-width: 572px){
-  
+
     .g-recaptcha iframe {
       max-width: 100%;
       transform:scale(0.77);
@@ -139,16 +139,16 @@
     .gov-co-footer .gov-co-footer-presetacion>.gov-co-footer-autoridad>.footer-politicas.poli-tramites .gov-co-politicas{
         justify-content: start!important;
     }
-    
+
   }
-  
+
   .g-recaptcha > div > div{
     margin: 4px auto !important;
     text-align: center;
     width: auto !important;
     height: auto !important;
   }
-  .accordion-govco .card .card-header button {    
+  .accordion-govco .card .card-header button {
     background-color: #f6f8f9!important;
     border: 2px solid #f6f8f9!important;
   }
@@ -181,14 +181,14 @@ button.btn-middle:focus{
 label span {
     font-size: 1rem;
   }
-  
+
   label.error {
       color: #A80521;
       font-size: 1rem;
       display: block;
       margin-top: 5px;
   }
-  
+
   input.error, textarea.error {
       border: 1px dashed #A80521;
       font-weight: 300;
@@ -224,7 +224,7 @@ label span {
 .govco-icon-attached-n:hover{
      color: white!important;
 }
-  
+
 
 .check-style {
     width: 20px;
@@ -242,10 +242,10 @@ label span {
     transition: background 300ms;
     cursor: pointer;
   }
-  
-  
+
+
   /* Pseudo element for check styling */
-  
+
   .check-style::before {
     content: "";
     color: transparent;
@@ -255,18 +255,18 @@ label span {
     border-radius: 5px;
     border: 0;
     background-color: transparent;
-    background-size: contain; 
+    background-size: contain;
     background-color: transparent;
     border: 2px solid #0B457F;
   }
-  
-  
+
+
   /* Checked */
-  
+
   .check-style:checked {
     background-color: currentcolor;
   }
-  
+
   .check-style:checked::before {
     box-shadow: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22px' height='22px' viewBox='0 0 24 24'%3E %3Cpath d='M15.88 8.29L10 14.17l-1.88-1.88a.996.996 0 1 0-1.41 1.41l2.59 2.59c.39.39 1.02.39 1.41 0L17.3 9.7a.996.996 0 0 0 0-1.41c-.39-.39-1.03-.39-1.42 0z' fill='%23fff'/%3E %3C/svg%3E");
@@ -348,9 +348,162 @@ label span {
     z-index: 1000;
 }
 
+/*
+LINEA DE AVANCE
+*/
 
- 
+.linea-avance-govco {
+  position: relative;
+}
 
+.linea-avance-govco p {
+  margin: 0;
+}
 
- 
+.linea-avance-govco .progress {
+  background-color: #E8E8E8;
+  display: flex;
+  margin: 0;
+}
 
+.linea-avance-govco .progress .progress-bar {
+  background-color: #3366CC;
+}
+
+.linea-avance-govco .header-linea-avance-govco span.title-linea-avance-govco {
+  font-size: 15px;
+  font-family: WorkSans-Regular;
+  width: 6.25rem;
+  color: #4B4B4B;
+}
+
+.linea-avance-govco .active-linea-avance-govco .header-linea-avance-govco span.title-linea-avance-govco {
+  font-family: WorkSans-SemiBold;
+  color: #3366CC;
+}
+
+.linea-avance-govco .header-linea-avance-govco .indicator-linea-avance-govco {
+  border: 0.063rem solid #004884;
+  background-color: #E8E8E8;
+  border-radius: 50%;
+  color: #004884;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: left;
+}
+
+.linea-avance-govco .active-linea-avance-govco .header-linea-avance-govco .indicator-linea-avance-govco {
+  border: 0.063rem solid #3366CC;
+  background-color: #3366CC;
+  color: #FFFFFF;
+}
+
+.linea-avance-govco .body-linea-avance-govco {
+  width: 100%;
+}
+
+.linea-avance-govco.h-linea-avance-govco .header-linea-avance-govco .indicator-linea-avance-govco,
+.linea-avance-govco.v-linea-avance-govco .item-linea-avance-govco .header-linea-avance-govco .indicator-linea-avance-govco {
+  width: 1.5rem;
+  height: 1.5rem;
+  font-family: Montserrat-Medium;
+  font-size: 14px;
+  background-color: #FFFFFF;
+  margin-right: 0.5rem;
+}
+
+.linea-avance-govco.h-linea-avance-govco .header-linea-avance-govco.active-linea-avance-govco .indicator-linea-avance-govco,
+.linea-avance-govco.v-linea-avance-govco .active-linea-avance-govco .header-linea-avance-govco .indicator-linea-avance-govco {
+  background-color: #3366CC;
+}
+
+.linea-avance-govco.h-linea-avance-govco .header-linea-avance-govco.inactive-linea-avance-govco .indicator-linea-avance-govco,
+.linea-avance-govco.v-linea-avance-govco .inactive-linea-avance-govco .header-linea-avance-govco .indicator-linea-avance-govco {
+  border: 0.063rem solid #4B4B4B;
+  background-color: #4B4B4B;
+  color: #FFFFFF;
+}
+
+.linea-avance-govco.h-linea-avance-govco .header-linea-avance-govco span.title-linea-avance-govco,
+.linea-avance-govco.v-linea-avance-govco .header-linea-avance-govco span.title-linea-avance-govco {
+  color: #004884;
+}
+
+.linea-avance-govco.h-linea-avance-govco .header-linea-avance-govco.active-linea-avance-govco span.title-linea-avance-govco,
+.linea-avance-govco.v-linea-avance-govco .active-linea-avance-govco .header-linea-avance-govco span.title-linea-avance-govco {
+  color: #3366CC;
+}
+
+.linea-avance-govco.h-linea-avance-govco .header-linea-avance-govco.inactive-linea-avance-govco span.title-linea-avance-govco,
+.linea-avance-govco.v-linea-avance-govco .inactive-linea-avance-govco .header-linea-avance-govco span.title-linea-avance-govco {
+  color: #4B4B4B;
+}
+
+.linea-avance-govco.h-linea-avance-govco .items-header-linea-avance-govco {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.813rem;
+}
+
+.linea-avance-govco.h-linea-avance-govco .progress {
+  width: 100%;
+  height: 0.188rem;
+}
+
+.linea-avance-govco.h-linea-avance-govco .header-linea-avance-govco.active-linea-avance-govco .indicator-linea-avance-govco {
+  border: 0.063rem solid #3366CC;
+  background-color: #3366CC;
+  color: #FFFFFF;
+}
+
+.linea-avance-govco.h-linea-avance-govco .header-linea-avance-govco.active-linea-avance-govco span.title-linea-avance-govco {
+  font-family: WorkSans-SemiBold;
+}
+
+.linea-avance-govco.h-linea-avance-govco .body-linea-avance-govco {
+  display: none;
+}
+
+.linea-avance-govco.h-linea-avance-govco .body-linea-avance-govco.active-linea-avance-govco {
+  display: block;
+  margin-top: 1.5rem;
+}
+
+.linea-avance-govco.h-linea-avance-govco .contents-example-linea-avance-govco {
+  background-color: #BABABA;
+  height: 16.813rem;
+  max-width: 29.375rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+
+.linea-avance-govco.h-linea-avance-govco .contents-example-linea-avance-govco button {
+  margin-right: 0.938rem;
+  margin-bottom: 1rem;
+}
+
+@media only screen and (max-width: 800px) {
+  .linea-avance-govco.h-linea-avance-govco .header-linea-avance-govco {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .linea-avance-govco.h-linea-avance-govco .header-linea-avance-govco:not(:first-child):not(:last-child) {
+    align-items: center;
+  }
+
+  .linea-avance-govco.h-linea-avance-govco .header-linea-avance-govco:last-child {
+    align-items: end;
+  }
+
+  .linea-avance-govco.h-linea-avance-govco .header-linea-avance-govco .title-linea-avance-govco {
+    width: auto;
+  }
+
+  .linea-avance-govco.h-linea-avance-govco .header-linea-avance-govco:not(.active-linea-avance-govco) .title-linea-avance-govco {
+    visibility: hidden;
+  }
+}

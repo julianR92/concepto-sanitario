@@ -1,22 +1,17 @@
 <!-- BASICO -->
-
-    <div class="row mt-3">
-    <div class="col">
-      <nav aria-label="Miga de pan" class="breadcrumb-nav-govco">
-        <ul class="breadcrumb-govco">
-          <li *ngFor="let item of items; let last = last" class="breadcrumb-item-govco" [class.active]="last" [attr.aria-current]="last ? 'page' : null">
-            <ng-container *ngIf="!last">
-              <a [href]="item.url">{{ item.label }}</a>
-            </ng-container>
-            <ng-container *ngIf="last">
-              {{ item.label }}
-            </ng-container>
-          </li>
-        </ul>
-      </nav>
-  </div>
-
-</div>
-
-
+ <div class="row mt-3">
+   <nav aria-label="Miga de pan">
+     <ul class="breadcrumb-govco px-0 mx-0">
+       <li *ngFor="let item of items; let last = last" class="breadcrumb-item-govco pl-0" [class.active]="last"
+         [attr.aria-current]="last ? 'page' : null">
+         <ng-container *ngIf="!last">
+           <a [href]="item.url">{{ item.label }}</a>
+         </ng-container>
+         <ng-container *ngIf="last">
+           {{ item.label }}
+         </ng-container>
+       </li>
+     </ul>
+   </nav>
+ </div>
 

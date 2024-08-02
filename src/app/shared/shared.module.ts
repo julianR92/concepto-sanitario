@@ -4,15 +4,17 @@ import { HeaderComponent } from './components/header/header.component';
 import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { MigaComponent } from './components/miga/miga.component';
-
-
+import { LineaAvanceComponent } from './components/linea-avance/linea-avance.component';
+import { StepperComponent } from './components/stepper/stepper.component';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
-    MigaComponent
+    MigaComponent,
+    LineaAvanceComponent,
+    StepperComponent
   ],
   imports: [
     CommonModule,
@@ -21,8 +23,8 @@ import { MigaComponent } from './components/miga/miga.component';
   exports:[
     HeaderComponent,
     FooterComponent,
-    MigaComponent
-
+    MigaComponent,
+    LineaAvanceComponent,
   ]
 })
 export class SharedModule { }

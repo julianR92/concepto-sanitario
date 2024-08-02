@@ -24,3 +24,46 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: "govco-font";
+  src: url("./assets/icons/fonts/govco-font-icons.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Montserrat-Medium */
+@font-face {
+  font-family: 'Montserrat-Medium';
+  src: url('./assets/fonts/Montserrat/Montserrat-Medium.ttf');
+}
+
+/* Montserrat-SemiBold */
+@font-face {
+  font-family: 'Montserrat-SemiBold';
+  src: url('./assets/fonts/Montserrat/Montserrat-SemiBold.ttf');
+}
+
+/* WorkSans-SemiBold */
+@font-face {
+  font-family: 'WorkSans-SemiBold';
+  src: url('./assets/fonts/Work_Sans/static/WorkSans-SemiBold.ttf');
+}
+
+/* WorkSans-Regular */
+@font-face {
+  font-family: 'WorkSans-Regular';
+  src: url('./assets/fonts/Work_Sans/static/WorkSans-Regular.ttf');
+}
+
+/* WorkSans-Medium */
+@font-face {
+  font-family: 'WorkSans-Medium';
+  src: url('./assets/fonts/Work_Sans/static/WorkSans-Medium.ttf');
+}
+
+/* WorkSans-Bold */
+@font-face {
+  font-family: 'WorkSans-Bold';
+  src: url('./assets/fonts/Work_Sans/static/WorkSans-Bold.ttf');
+}

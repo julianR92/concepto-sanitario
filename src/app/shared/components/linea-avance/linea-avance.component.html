@@ -1,0 +1,16 @@
+<div class="linea-avance-govco h-linea-avance-govco mb-5" id="lineaAvance1">
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" [style.width.%]="porcentaje" [attr.aria-valuenow]="porcentaje" aria-valuemin="0"
+      aria-valuemax="100"></div>
+  </div>
+
+  <div class="items-header-linea-avance-govco">
+    @for (item of pasos; track $index) {
+    <div class="header-linea-avance-govco " [class.active-linea-avance-govco]="$index===progreso">
+      <div class="indicator-linea-avance-govco" [attr.percentage]="item.porcentaje">
+        {{$index}}</div>
+      <span class="title-linea-avance-govco">{{item.label}}</span>
+    </div>
+    }
+  </div>
+</div>

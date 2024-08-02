@@ -6,9 +6,7 @@ import { Component, Input } from '@angular/core';
   templateUrl: './miga.component.html',
   styleUrl: './miga.component.css'
 })
+
 export class MigaComponent {
   @Input() items: BreadcrumbItem[] = [];
-
-
-
 }
