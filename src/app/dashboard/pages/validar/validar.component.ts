@@ -64,6 +64,7 @@ export class ValidarComponent  implements OnInit{
         this.isLoading=false
         if(data.success){
           sessionStorage.setItem('data', JSON.stringify(data.data));
+          sessionStorage.setItem('tipo', JSON.stringify('CEC'));
        return this.router.navigate(['/establecimientos/escoge']);
         }else{
           if(data.message=='error')
@@ -72,6 +73,7 @@ export class ValidarComponent  implements OnInit{
         }
           sessionStorage.setItem('establecimiento', JSON.stringify([]));
           sessionStorage.setItem('nit', JSON.stringify(this.myForm.value.nit));
+          sessionStorage.setItem('tipo', JSON.stringify('NO-CEC'));
           return this.router.navigate(['/establecimientos/registrar']);
         }
 

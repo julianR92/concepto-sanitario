@@ -6,6 +6,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidatorsService } from '../../../shared/services/validator.service';
 import { MaeicService } from '../../services/maeic.service';
 import { catchError, delay, of } from 'rxjs';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-select-establecimientos',
@@ -95,8 +97,8 @@ export class SelectEstablecimientosComponent implements OnInit {
      )
      .subscribe(data=>
      {
-
       if(!data.success){
+
         sessionStorage.removeItem('data')
         sessionStorage.setItem('establecimiento', JSON.stringify(this.establecimiento));
         return this.router.navigate(['/establecimientos/registrar']);
@@ -105,11 +107,23 @@ export class SelectEstablecimientosComponent implements OnInit {
           {
            return this.router.navigate(['/establecimientos/validar']);
           }
+          this.isLoading = false
+          this.messajeAlert = `El establecimiento con nit: ${this.vs.removeLeadingZeros(this.MaeProCod)} con sede en : ${this.MaeDir} ya se encuentra registrado`
+          Swal.fire({
+            title: "Atencion!",
+            text: this.messajeAlert,
+            icon: "warning"
+          });
+          this.myForm.setValue({'placa':''});
+          this.myForm.get('placa')?.clearValidators()
+          this.myForm.get('placa')?.updateValueAndValidity()
+
+
           this.isExist= true;
           this.MaeNum = '';
           this.MaeDir = '';
           this.MaeNum = '';
-          this.messajeAlert = `El establecimiento con nit: ${this.MaeProCod} con sede en : ${this.MaeDir} ya se encuentra registrado`
+
            return ;
 
       }

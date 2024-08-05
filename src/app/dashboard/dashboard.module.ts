@@ -10,6 +10,9 @@ import { MainModule } from '../main/main.module';
 import { ValidarComponent } from './pages/validar/validar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SelectEstablecimientosComponent } from './pages/select-establecimientos/select-establecimientos.component';
+import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha-2';
+import { FinalizaComponent } from './pages/finaliza/finaliza.component';
+
 
 
 
@@ -20,14 +23,18 @@ import { SelectEstablecimientosComponent } from './pages/select-establecimientos
     ActualizarComponent,
     PrincipalComponent,
     ValidarComponent,
-    SelectEstablecimientosComponent
+    SelectEstablecimientosComponent,
+    FinalizaComponent
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     SharedModule,
     MainModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RecaptchaModule,
+    RecaptchaFormsModule
+
   ],
 
 })

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environments } from '../../../environments/environments';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, map, Observable, of, throwError } from 'rxjs';
 import { DataMaeic, DataValidate, Maeic } from '../interfaces/Maeic.interface';
 import { Establecimiento } from '../interfaces/Establecimiento.interface';
@@ -12,6 +12,7 @@ import { Comuna, Municipio, Options } from '../interfaces/Options.interface';
 export class MaeicService {
 
   private baseUrl: string = environments.baseUrl
+  private apiUrl: string = environments.apiUrl
 
   constructor(private http: HttpClient) { }
 
@@ -44,6 +45,19 @@ export class MaeicService {
         map(response => response ? response.municipios : null),
         catchError(() => of(null))
        );
+  }
+
+  addEstablecimiento( establecimiento: Establecimiento[]):Observable <DataValidate>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.post<DataValidate>(`${this.baseUrl}/establecimientos`, establecimiento,{headers}).pipe(
+
+    );
+  }
+
+  getIp(): Observable<{ ip: string }> {
+    return this.http.get<{ ip: string }>(this.apiUrl);
   }
 
 }

@@ -1,6 +1,6 @@
 export interface Establecimiento {
-  id: string|number;
-  inscripcion: string|number;
+  id?: string|number;
+  inscripcion?: string|number;
   actividad_id: string;
   nit: string;
   registro_iyc?: string;
@@ -25,19 +25,27 @@ export interface Establecimiento {
   ape_representante: string;
   tipo_documento_repre: string;
   documento_repre: string;
-  correo_representante: string;
+  correo_representante?: string;
   direccion_notificacion?: string;
   direccion_notificacion_electronica?: string;
   autoriza_notificaciones?: string;
   departamento_notificacion?: string;
   municipio_notificacion?: string;
-  codigo_ciuu: string;
-  horario: string;
-  numero_trabajadores: number;
-  status: string;
-  tratamiento_datos: string;
-  acepto_terminos: string;
-  confirmo_mayor_edad: string;
-  created_at: string;
-  updated_at: string;
+  codigo_ciuu?: string;
+  horario?: string;
+  numero_trabajadores?: number;
+  status?: string;
+  tratamiento_datos: string|boolean;
+  acepto_terminos: string|boolean;
+  confirmo_mayor_edad: string|boolean;
+  recaptcha: string;
+  created_at?: string;
+  confirme_email: string;
+  calle?: string;
+  numero_uno?: string;
+  numero_dos?: string;
+  letra_uno?: string;
+  letra_dos?: string;
+  letra_tres?: string;
+  tipo: string;
 }

@@ -6,6 +6,7 @@ import { ActualizarComponent } from './pages/actualizar/actualizar.component';
 import { VisitaComponent } from './pages/visita/visita.component';
 import { ValidarComponent } from './pages/validar/validar.component';
 import { SelectEstablecimientosComponent } from './pages/select-establecimientos/select-establecimientos.component';
+import { FinalizaComponent } from './pages/finaliza/finaliza.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,9 @@ const routes: Routes = [
    },
   {
     path: 'visita', component: VisitaComponent
+  },
+  {
+    path: 'finaliza', component: FinalizaComponent
   },
 
   { path: '**', redirectTo: '' },

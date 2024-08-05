@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BreadcrumbItem } from '../../../shared/interfaces/miga.interface';
-import { Maeic } from '../../interfaces/Maeic.interface';
+import { DataValidate, Maeic } from '../../interfaces/Maeic.interface';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidatorsService } from '../../../shared/services/validator.service';
@@ -16,8 +16,12 @@ import {
   Parametro,
 } from '../../interfaces/Options.interface';
 import { MaeicService } from '../../services/maeic.service';
-import { catchError, distinctUntilChanged, map, of, tap } from 'rxjs';
+import { catchError, delay, distinctUntilChanged, map, of, tap } from 'rxjs';
 import { environments } from '../../../../environments/environments';
+import { Establecimiento } from '../../interfaces/Establecimiento.interface';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
+import * as CryptoJS from 'crypto-js';
 
 
 @Component({
@@ -28,6 +32,7 @@ import { environments } from '../../../../environments/environments';
 export class CrearComponent implements OnInit {
   public message: string = '';
   public nit: string | null = null;
+  public tipo: string | null = null;
   public dataCec: Maeic[] = [];
   public departamentos: Departamento[] = [];
   public municipios: Municipio[] = [];
@@ -39,13 +44,21 @@ export class CrearComponent implements OnInit {
   public indicaciones: Parametro[] = [];
   public comuna: Comuna | null = null;
   public siteKey:string = environments.siteKey ;
+  public establecimiento: Establecimiento[] = []
+  public errorMessages: string[] = [];
+  public clientIp: string | undefined;
+  public isLoading: boolean = false;
+  public secretKey:string = environments.SECRET_KEY
+
+
 
 
   constructor(
     private router: Router,
     private fb: FormBuilder,
     private vs: ValidatorsService,
-    private maeic: MaeicService
+    private maeic: MaeicService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -74,20 +87,20 @@ export class CrearComponent implements OnInit {
         return this.searchDeparmentByName(departamento) ?? '';
       })
     ).subscribe((departamento_id) => {
-      console.log(departamento_id)
       if(!departamento_id) return ;
         this.onChangedDepartamento(departamento_id)
     })
 
-
     //cargar datos en el form
     this.myForm.patchValue({
       nit: this.nit,
+      tipo: this.tipo,
       razon_social: this.dataCec[0]?.MaeProNom?.trim() || '',
       registro_iyc: this.dataCec[0]?.MaeNum?.trim() || '',
       matricula_mercantil: this.dataCec[0]?.RadMatMer?.trim() || '',
       direccion_maeic: this.dataCec[0]?.MaeDir?.trim() || '',
       numero_predial: this.dataCec[0]?.MaePreNum.trim() || '',
+
     });
   }
   //getters
@@ -128,6 +141,9 @@ export class CrearComponent implements OnInit {
     this.nit =
       JSON.parse(sessionStorage.getItem('nit')!) ||
       this.vs.removeLeadingZeros(this.dataCec[0].MaeProCod);
+    this.tipo =JSON.parse(sessionStorage.getItem('tipo')!);
+
+
   }
   public loadOptions() {
     this.maeic
@@ -146,7 +162,6 @@ export class CrearComponent implements OnInit {
           });
           return this.router.navigate(['/establecimientos/validar']);
         } else {
-          console.log(data);
           this.actividades = data.actividades;
           this.departamentos = data.departamentos;
           this.corregimientos = data.corregimiento;
@@ -205,17 +220,18 @@ export class CrearComponent implements OnInit {
 
   public myForm: FormGroup = this.fb.group({
     nit: ['', [Validators.required]],
+    tipo: ['', [Validators.required]],
     razon_social: [
       '',
       [
         Validators.required,
-        Validators.max(100),
-        Validators.pattern(this.vs.numberStringPattern),
+        Validators.maxLength(100),
+        Validators.pattern(this.vs.razonSocialPattern),
       ],
     ],
     nombre_comercial: [
       '',
-      [Validators.max(100), Validators.pattern(this.vs.numberStringPattern)],
+      [Validators.maxLength(100), Validators.pattern(this.vs.numberStringPattern)],
     ],
     registro_iyc: [
       '',
@@ -261,7 +277,7 @@ export class CrearComponent implements OnInit {
     comuna: ['', [Validators.required]],
     corregimiento: ['', []],
     municipio: ['Bucaramanga', [Validators.required]],
-    deparatamento: ['Santander', [Validators.required]],
+    departamento: ['Santander', [Validators.required]],
     nom_propietario: ['', [Validators.required, Validators.maxLength(20), Validators.pattern(this.vs.letterPAttern)]],
     ape_propietario: ['', [Validators.required, Validators.maxLength(20), Validators.pattern(this.vs.letterPAttern)]],
     tipo_documento_pro: ['', [Validators.required]],
@@ -281,6 +297,8 @@ export class CrearComponent implements OnInit {
     tratamiento_datos : ['', [Validators.required]],
     acepto_terminos : ['', [Validators.required]],
     confirmo_mayor_edad : ['', [Validators.required]],
+    recaptcha: ['', Validators.required],
+
 
   }, {
     validators: [
@@ -333,6 +351,54 @@ export class CrearComponent implements OnInit {
       this.myForm.markAllAsTouched();
       return;
     }
+
+    this.establecimiento = this.myForm.value;
+
+
+
+    //realizar peticion
+    this.isLoading = true
+    this.maeic.addEstablecimiento(this.establecimiento).
+     pipe(
+      delay(2500),
+      catchError((error: HttpErrorResponse) => {
+               return of({ success: false, errors: [] } as DataValidate);
+      })).
+    subscribe(response=>{
+        if(response.success){
+
+          Swal.fire({
+            title: '¡Registro Exitoso!',
+            text: 'Establecimiento Registrado Exitosamente!',
+            icon: 'success',
+            timer: 3000,
+            showConfirmButton: false
+          }).then(() => {
+            this.isLoading = false
+            sessionStorage.clear();
+            const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(response.data), this.secretKey).toString();
+            sessionStorage.setItem('encryptedData', encryptedData);
+
+            this.router.navigate(['/establecimientos/finaliza']);
+          });
+
+        }else{
+          const errors = response.errors ?? []
+          if(errors.length>0){
+            this.isLoading = false
+           this.showErrorMessages(errors)
+           return;
+
+          }
+
+        }
+
+    }
+    );
+  }
+
+
+
     // const response = (window as any).grecaptcha.getResponse();
 
 
@@ -340,7 +406,8 @@ export class CrearComponent implements OnInit {
 
 
 
-  }
+
+
 
 
 
@@ -357,5 +424,11 @@ export class CrearComponent implements OnInit {
   }
   onlyLetters(event: KeyboardEvent): boolean {
     return this.vs.onlyLetters(event);
+  }
+  showErrorMessages(errors: string[]): void {
+    errors.forEach(error => {
+      console.log(error)
+      this.toastr.error(error, 'Error');
+    });
   }
 }

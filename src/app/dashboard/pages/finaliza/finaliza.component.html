@@ -1,0 +1,37 @@
+<div class="d-flex justify-content-center align-items-center mt-6 row animate__animated animate__fadeIn animate__slow">
+  <div class="toast container-toast-govco success show" id="fixedtoast" data-autohide="false" role="alert"
+  aria-live="assertive" aria-atomic="true" style="max-width: 70% !important">
+  <div class="toast-header toast-header-success-govco">
+      <span class="govco-svg govco-check-circle fs-mr" aria-label="info"></span>
+      <strong class="me-auto toast-title-govco">Registro Exitoso - NIT: {{dataStore[0].nit}}</strong>
+      <small class="toast-small-govco success">Hace x segundos</small>
+      <!-- <a href="javascript:void(0)" role="button" data-bs-dismiss="modal"
+          class="close-btn-toast" aria-label="Close" aria-expanded="false">
+          <span class="govco-icon govco-times success"></span>
+      </a> -->
+  </div>
+  <div class="toast-body toast-body-govco">
+      <p class="text-center" style="font-weight: bolder;">Este es el primer paso para realizar el tramite de solicitud del concepto sanitario.</p><br>
+      <p>Debe seguir los siguientes pasos:</p>
+      <ol>
+        <li>Inscribirse ✅ </li>
+        <li>Realizar Auto Evaluación</li>
+        <li>Solicitar la visita del personal técnico</li>
+      </ol>
+      <p class="text-center">  No olvides conservar tu número de inscripción</p>
+      <h3 class="text-center">{{dataStore[0].inscripcion}}</h3>
+      <p class="text-center">{{dataStore[0].razon_social}}</p>
+      <p class="text-center">{{dataStore[0].direccion}} {{dataStore[0].complemento_direccion}}</p>
+      <div class="row ">
+        <div class="col-md-6">
+          <a routerLink="/establecimientos" class="btn btn-link">Auto-Evaluacion</a>
+
+        </div>
+        <div class="col-md-6 text-end">
+            <a routerLink="/" class="btn btn-link">Cancelar</a>
+        </div>
+      </div>
+  </div>
+</div>
+
+</div>

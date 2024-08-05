@@ -21,6 +21,19 @@ export interface DataValidate{
 
   message?: string;
   success: boolean;
+  errors? : string[];
+  data?: ResponseSucesss
+
+}
+export interface ResponseSucesss{
+
+  id: string|number;
+  inscripcion: string;
+  nit : string;
+  razon_social : string;
+  direccion? : string;
+  complemento_direccion? : string;
+
 
 }
 

@@ -1,4 +1,4 @@
-import { LOCALE_ID,NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID,NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -13,6 +13,7 @@ import { MainModule } from './main/main.module';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HmacInterceptor } from './interceptors/hmac.interceptors';
 import { ErrorInterceptor } from './interceptors/error.interceptors';
+import { ToastrModule } from 'ngx-toastr';
 
 
 registerLocaleData(localeEs);
@@ -27,7 +28,8 @@ registerLocaleData(localeEs);
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
-    MainModule
+    MainModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     {provide: LOCALE_ID,useValue:'es-CO'},
@@ -37,6 +39,7 @@ registerLocaleData(localeEs);
 
 
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

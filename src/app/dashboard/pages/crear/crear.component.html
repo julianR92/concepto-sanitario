@@ -5,7 +5,7 @@
   class="mt-2"
 ></titulo-tramite>
 
-<form action="" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+<form action="" [formGroup]="myForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
 <div class="row pt-4 row animate__animated animate__fadeIn animate__slow">
   <div class="col-md-12 mt-3 text-end">
     <a routerLink="/establecimientos/validar" class="btn btn-link">Cancelar</a>
@@ -243,9 +243,9 @@
 <div class="col-md-3 mt-3">
   <div class="entradas-de-texto-govco">
     <label for="calle">Departamento</label>
-    <input type="text" name="deparatamento" id="deparatamento"  formControlName="deparatamento" readonly>
-    <span *ngIf="isValidField('deparatamento')" class="form-text text-danger">
-      {{ getFieldError("deparatamento") }}
+    <input type="text" name="departamento" id="departamento"  formControlName="departamento" readonly>
+    <span *ngIf="isValidField('departamento')" class="form-text text-danger">
+      {{ getFieldError("departamento") }}
     </span>
   </div>
 </div>
@@ -414,7 +414,7 @@
     <label for="calle">Codigo CIIU</label>
     <select class="form-select" aria-label="Default select example" name="id_ciuu" formControlName="id_ciuu">
     <option value="">Seleccione...</option>
-    <option *ngFor="let codigo of ciiu" [value]="codigo?.Codigo">{{codigo?.Codigo}} | {{codigo?.CodDes}}</option>
+    <option *ngFor="let codigo of ciiu" [value]="codigo?.IdCiiu">{{codigo?.Codigo }} | {{codigo?.CodDes}}</option>
    </select>
     <span *ngIf="isValidField('id_ciuu')" class="form-text text-danger">
       {{ getFieldError("id_ciuu") }}
@@ -475,11 +475,14 @@
 
 <div class="col-md-6 mt-4">
 
-  <div class="g-recaptcha" [attr.data-sitekey]="siteKey"></div>
+  <re-captcha formControlName="recaptcha" siteKey="{{siteKey}}" class="mb-3"></re-captcha>
+  <span *ngIf="isValidField('recaptcha')" class="form-text text-danger">
+    {{ 'Validar captcha es requerido' }}
+  </span>
 
   <button
   type="submit"
-  class="btn-govco outline-secundary-btn-govco icon-btn-govco"
+  class="btn-govco outline-secundary-btn-govco icon-btn-govco mt-3"
 >
 <span class="govco-svg govco-check-circle"></span>
   <span>Inscribirme</span>
@@ -493,9 +496,19 @@
 
 </div>
 
+<div *ngIf="myForm.valid" class="mt-2">
+  <p class="text-success"> Formulario Completo <span class="govco-svg govco-thumbs-up"></span></p>
+</div>
+<div *ngIf="!myForm.valid" class="mt-2">
+  <p class="text-danger"> Faltan campos por validar <span class="govco-svg govco-thumbs-down"></span></p>
+</div>
 
 
-  <div class="row mt-4">
+  <!-- <div class="row mt-4">
     {{myForm.value |  json}}
-  </div>
+  </div> -->
 </form>
+<!-- laoder -->
+<div class="mt-8" *ngIf="isLoading">
+  <loader-gov></loader-gov>
+</div>
