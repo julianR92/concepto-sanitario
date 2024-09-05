@@ -11,6 +11,18 @@
 :host .p-fieldset{
   border-color: #0943B5 ;
   border-style: solid 2px;
+  min-height: 265px;
+}
+
+.fieldset-container {
+  flex: 1 1 30%; /* Ajusta el tamaño de cada contenedor */
+  min-width: 300px; /* Asegura que haya un tamaño mínimo adecuado */
+}
+
+@media (max-width: 768px) {
+  .fieldset-container {
+    flex: 1 1 100%; /* En pantallas pequeñas, los elementos ocupan todo el ancho */
+  }
 }
 
 
