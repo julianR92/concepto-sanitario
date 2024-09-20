@@ -1,1 +1,66 @@
-<p>actualizar works!</p>
+<general-miga [items]="breadcrumbItems"></general-miga>
+<titulo-tramite [title]="titulo" [subtitle]="subitulo" class="mt-2"></titulo-tramite>
+
+<div class="row" *ngIf="!isLoading">
+  <form action="" class="" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <h6 class="text-center mt-4">Primero validemos tu Inscripción</h6>
+    <div class="row">
+    <div class="col-md-4">
+      <div class="entradas-de-texto-govco m-2">
+        <label for="nit">Nit*(sin digito de verificación)</label>
+        <input
+          type="text"
+          id="nit"
+          aria-describedby="note2"
+          placeholder="Ejemplo: 890201222"
+          value=""
+          #nit
+          formControlName="nit"
+          msjError="Solo se acepta formato numerico"
+          (keypress)="onlyNumbers($event)"
+        />
+        <span *ngIf="isValidField('nit')" class="form-text text-danger">
+          {{ getFieldError("nit", nit.getAttribute('msjError')) }}
+        </span>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="entradas-de-texto-govco m-2">
+        <label for="inscripcion">Numero Unico de Inscripcion*</label>
+        <input
+          type="text"
+          id="inscripcion"
+          aria-describedby="note2"
+          placeholder="Ejemplo: IVC000001"
+          value=""
+          #inscripcion
+          formControlName="inscripcion"
+          msjError="Solo acepta el formato IVC000000"
+          (input)="toUpperCase($event)"
+
+        />
+        <span *ngIf="isValidField('inscripcion')" class="form-text text-danger">
+          {{ getFieldError("inscripcion", inscripcion.getAttribute('msjError')) }}
+        </span>
+      </div>
+    </div>
+    <div class="col-md-4 mt-5">
+      <button
+        type="submit"
+        class="btn-govco outline-secundary-btn-govco icon-btn-govco"
+         [disabled]="!myForm.valid"
+      >
+        <span class="govco-svg govco-check" aria-hidden="true"></span>
+        <span>Validar</span>
+      </button>
+    </div>
+  </div>
+  </form>
+</div>
+  <div class="col-md-12 mt-3">
+    <a routerLink="/" class="btn btn-link">Atras</a>
+   </div>
+<!-- laoder -->
+<div class="mt-8" *ngIf="isLoading">
+  <loader-gov></loader-gov>
+</div>

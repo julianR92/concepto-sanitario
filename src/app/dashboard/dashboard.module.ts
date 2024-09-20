@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SelectEstablecimientosComponent } from './pages/select-establecimientos/select-establecimientos.component';
 import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha-2';
 import { FinalizaComponent } from './pages/finaliza/finaliza.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -33,7 +34,8 @@ import { FinalizaComponent } from './pages/finaliza/finaliza.component';
     MainModule,
     ReactiveFormsModule,
     RecaptchaModule,
-    RecaptchaFormsModule
+    RecaptchaFormsModule,
+    RouterModule
 
   ],
 

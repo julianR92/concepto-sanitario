@@ -109,4 +109,9 @@ export class ValidatorsService {
   public removeLeadingZeros(value: string): string {
     return value.replace(/^0+/, '');
   }
+  toUpper(event: Event):string {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.toUpperCase();
+    return input.value;
+  }
 }
