@@ -38,7 +38,7 @@ export interface Establecimiento {
   tratamiento_datos: string|boolean;
   acepto_terminos: string|boolean;
   confirmo_mayor_edad: string|boolean;
-  recaptcha: string;
+  recaptcha?: string;
   created_at?: string;
   confirme_email: string;
   calle?: string;
@@ -49,3 +49,5 @@ export interface Establecimiento {
   letra_tres?: string;
   tipo: string;
 }
+
+

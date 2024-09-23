@@ -95,7 +95,7 @@ export class CrearComponent implements OnInit {
     this.myForm.patchValue({
       nit: this.nit,
       tipo: this.tipo,
-      razon_social: this.dataCec[0]?.MaeProNom?.trim() || '',
+      razon_social: this.quitarComillas(this.dataCec[0]?.MaeProNom?.trim()) || '',
       registro_iyc: this.dataCec[0]?.MaeNum?.trim() || '',
       matricula_mercantil: this.dataCec[0]?.RadMatMer?.trim() || '',
       direccion_maeic: this.dataCec[0]?.MaeDir?.trim() || '',
@@ -409,8 +409,6 @@ export class CrearComponent implements OnInit {
 
 
 
-
-
   //validaciones
 
   isValidField(field: string) {
@@ -427,8 +425,11 @@ export class CrearComponent implements OnInit {
   }
   showErrorMessages(errors: string[]): void {
     errors.forEach(error => {
-      console.log(error)
       this.toastr.error(error, 'Error');
     });
   }
+   quitarComillas(cadena: any) {
+    // Expresión regular que coincide con comillas simples, dobles y backticks
+    return cadena.replace(/['"`´´]/g, '');
+}
 }

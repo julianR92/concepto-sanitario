@@ -13,6 +13,7 @@ import { SelectEstablecimientosComponent } from './pages/select-establecimientos
 import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha-2';
 import { FinalizaComponent } from './pages/finaliza/finaliza.component';
 import { RouterModule } from '@angular/router';
+import { FormUpdateComponent } from './pages/form-update/form-update.component';
 
 
 
@@ -25,7 +26,8 @@ import { RouterModule } from '@angular/router';
     PrincipalComponent,
     ValidarComponent,
     SelectEstablecimientosComponent,
-    FinalizaComponent
+    FinalizaComponent,
+    FormUpdateComponent
   ],
   imports: [
     CommonModule,

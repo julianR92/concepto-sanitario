@@ -5,6 +5,9 @@ import { ValidatorsService } from '../../../shared/services/validator.service';
 import { MaeicService } from '../../services/maeic.service';
 import { Router } from '@angular/router';
 import { catchError, delay, of } from 'rxjs';
+import { environments } from '../../../../environments/environments';
+import Swal from 'sweetalert2';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-actualizar',
@@ -12,6 +15,9 @@ import { catchError, delay, of } from 'rxjs';
   styleUrl: './actualizar.component.css'
 })
 export class ActualizarComponent {
+
+  public siteKey:string = environments.siteKey ;
+  public secretKey:string = environments.SECRET_KEY
 
   public breadcrumbItems: BreadcrumbItem[] = [
     { label: 'Inicio', url: 'https://www.bucaramanga.gov.co/', ngLink:false },
@@ -54,6 +60,8 @@ export class ActualizarComponent {
 
       ],
     ],
+    recaptcha: ['', Validators.required],
+
   });
 
   codigoValidator(control: FormControl) {
@@ -69,35 +77,42 @@ export class ActualizarComponent {
     }
     sessionStorage.clear();
     this.isLoading = true
-    console.log(this.myForm.value)
-    // this.maeic.validateMaeic(this.myForm.value.nit).pipe(
-    //     delay(2500),
-    //     catchError(error => {
-    //     this.myForm.reset()
-    //     return of({ success: false, message: 'error', data:[] });
-    //   })
+    this.maeic.getIdEstablemiento(this.myForm.value?.nit,this.myForm.value.inscripcion).pipe(
+        delay(2000),
+        catchError(error => {
+        this.myForm.reset()
+        return of({ success: false, message: 'error', data:[] });
+      })
 
 
-    // ).subscribe(
-    //   data=> {
-    //     this.isLoading=false
-    //     if(data.success){
-    //       sessionStorage.setItem('data', JSON.stringify(data.data));
-    //       sessionStorage.setItem('tipo', JSON.stringify('CEC'));
-    //    return this.router.navigate(['/establecimientos/escoge']);
-    //     }else{
-    //       if(data.message=='error')
-    //      {
-    //       return this.router.navigate(['/establecimientos/validar']);
-    //     }
-    //       sessionStorage.setItem('establecimiento', JSON.stringify([]));
-    //       sessionStorage.setItem('nit', JSON.stringify(this.myForm.value.nit));
-    //       sessionStorage.setItem('tipo', JSON.stringify('NO-CEC'));
-    //       return this.router.navigate(['/establecimientos/registrar']);
-    //     }
+    ).subscribe(
+      data=> {
+        this.isLoading=false
+        if(data?.success){
 
-    //   }
-    //);
+          sessionStorage.clear();
+          const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(data.data), this.secretKey).toString();
+          sessionStorage.setItem('encryptedData', encryptedData);
+          Swal.fire({
+            title: "Atencion!",
+            text: `Inscripcion: ${this.myForm.value.inscripcion} validada exitosamente`,
+            icon: "success"
+          });
+          return this.router.navigate(['/establecimientos/actualizarEstablecimiento']);
+        }else{
+          sessionStorage.clear();
+          Swal.fire({
+            title: "Atencion!",
+            text: `Inscripcion: ${this.myForm.value?.inscripcion} no encontrada para el nit ${this.myForm.value?.nit}`,
+            icon: "warning"
+          });
+          this.myForm.reset()
+          return;
+
+        }
+
+      }
+    );
   }
 
   onlyNumbers(event: KeyboardEvent):boolean{

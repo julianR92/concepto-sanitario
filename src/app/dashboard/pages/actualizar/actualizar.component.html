@@ -1,10 +1,10 @@
 <general-miga [items]="breadcrumbItems"></general-miga>
 <titulo-tramite [title]="titulo" [subtitle]="subitulo" class="mt-2"></titulo-tramite>
 
-<div class="row" *ngIf="!isLoading">
+<div class="row animate__animated animate__fadeIn animate__slow" *ngIf="!isLoading">
   <form action="" class="" [formGroup]="myForm" (ngSubmit)="onSubmit()">
     <h6 class="text-center mt-4">Primero validemos tu Inscripción</h6>
-    <div class="row">
+    <div class="row mt-4">
     <div class="col-md-4">
       <div class="entradas-de-texto-govco m-2">
         <label for="nit">Nit*(sin digito de verificación)</label>
@@ -44,6 +44,11 @@
         </span>
       </div>
     </div>
+    <div class="w-100"></div>
+    <div class="col-md-4 mt-3 ml-2">
+      <re-captcha formControlName="recaptcha" siteKey="{{siteKey}}" class="mb-3"></re-captcha>
+    </div>
+    <div class="w-100"></div>
     <div class="col-md-4 mt-5">
       <button
         type="submit"
@@ -54,12 +59,19 @@
         <span>Validar</span>
       </button>
     </div>
+    <div *ngIf="myForm.valid" class="mt-2">
+      <p class="text-success"> Formulario Completo <span class="govco-svg govco-thumbs-up"></span></p>
+    </div>
+    <div *ngIf="!myForm.valid" class="mt-2">
+      <p class="text-danger"> Faltan campos por validar <span class="govco-svg govco-thumbs-down"></span></p>
+    </div>
   </div>
+   <!-- <div class="row mt-4">
+    {{myForm.value |  json}}
+  </div> -->
   </form>
+
 </div>
-  <div class="col-md-12 mt-3">
-    <a routerLink="/" class="btn btn-link">Atras</a>
-   </div>
 <!-- laoder -->
 <div class="mt-8" *ngIf="isLoading">
   <loader-gov></loader-gov>

@@ -7,6 +7,7 @@ import { VisitaComponent } from './pages/visita/visita.component';
 import { ValidarComponent } from './pages/validar/validar.component';
 import { SelectEstablecimientosComponent } from './pages/select-establecimientos/select-establecimientos.component';
 import { FinalizaComponent } from './pages/finaliza/finaliza.component';
+import { FormUpdateComponent } from './pages/form-update/form-update.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path: 'actualizar',
     component: ActualizarComponent
+   },
+  {
+    path: 'actualizarEstablecimiento',
+    component: FormUpdateComponent
    },
   {
     path: 'visita', component: VisitaComponent

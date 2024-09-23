@@ -60,4 +60,21 @@ export class MaeicService {
     return this.http.get<{ ip: string }>(this.apiUrl);
   }
 
-}
+  getIdEstablemiento(nit:string, inscripcion:string){
+    return this.http.get<DataValidate>(`${ this.baseUrl }/validate/inscripcion/${nit}/${inscripcion}`)
+      .pipe(
+        map(response => response),
+        catchError(() => of(null))
+       );
+  }
+  getEstablecimientobyId(id:string){
+    return this.http.get<Establecimiento>(`${ this.baseUrl }/establecimiento/${id}`)
+      .pipe(
+        map(response => response),
+        catchError(() => of(null))
+       );
+  }
+
+  }
+
+

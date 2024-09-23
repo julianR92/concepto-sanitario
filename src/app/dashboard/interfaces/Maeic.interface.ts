@@ -28,9 +28,9 @@ export interface DataValidate{
 export interface ResponseSucesss{
 
   id: string|number;
-  inscripcion: string;
-  nit : string;
-  razon_social : string;
+  inscripcion?: string;
+  nit? : string;
+  razon_social? : string;
   direccion? : string;
   complemento_direccion? : string;
 
