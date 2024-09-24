@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ResponseSucesss } from '../../interfaces/Maeic.interface';
+import { DataValidate, ResponseSucesss } from '../../interfaces/Maeic.interface';
 import { Router } from '@angular/router';
 import { environments } from '../../../../environments/environments';
 import Swal from 'sweetalert2';
@@ -12,6 +12,7 @@ import { ActividadEconomica, Barrio, CodigoCiiu, Comuna, Corregimiento, Departam
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidatorsService } from '../../../shared/services/validator.service';
 import { BreadcrumbItem } from '../../../shared/interfaces/miga.interface';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -35,6 +36,7 @@ export class FormUpdateComponent implements OnInit, OnDestroy {
   public indicaciones: Parametro[] = [];
   public comuna: Comuna | null = null;
   public isLoading: boolean = false;
+  public comercio: Establecimiento[] = []
 
   public breadcrumbItems: BreadcrumbItem[] = [
     { label: 'Inicio', url: 'https://www.bucaramanga.gov.co/', ngLink:false },
@@ -197,7 +199,8 @@ export class FormUpdateComponent implements OnInit, OnDestroy {
     numero_trabajadores : ['', [Validators.maxLength(5), Validators.pattern(this.vs.numberPattern)]],
     horario : ['', [Validators.maxLength(150), Validators.pattern(this.vs.mulitplePattern)]],
     recaptcha: ['', Validators.required],
-    direccion_actual : ['', Validators.required]
+    direccion_actual : ['', Validators.required],
+    inscripcion : ['', Validators.required]
 
 
   }, {
@@ -262,49 +265,48 @@ export class FormUpdateComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.establecimiento = this.myForm.value;
+    if(!this.myForm.value?.calle){
+      this.myForm.get('direccion')?.setValue(null, {emitEvent:false});
+
+    }
 
 
+   this.comercio = this.myForm.value;
+    this.isLoading = true
+    this.maeic.updateEstablecimiento(this.comercio).
+     pipe(
+      delay(2500),
+      catchError((error: HttpErrorResponse) => {
+               return of({ success: false, errors: [] } as DataValidate);
+      })).
+    subscribe(response=>{
+        if(response.success){
 
-    // //realizar peticion
-    // this.isLoading = true
-    // this.maeic.addEstablecimiento(this.establecimiento).
-    //  pipe(
-    //   delay(2500),
-    //   catchError((error: HttpErrorResponse) => {
-    //            return of({ success: false, errors: [] } as DataValidate);
-    //   })).
-    // subscribe(response=>{
-    //     if(response.success){
+          Swal.fire({
+            title: 'Actualización Exitosa!',
+            text: 'Establecimiento Actualizado Exitosamente!',
+            icon: 'success',
+            timer: 3000,
+            showConfirmButton: false
+          }).then(() => {
+            this.isLoading = false
+            sessionStorage.clear();
+            this.router.navigate(['/establecimientos']);
+          });
 
-    //       Swal.fire({
-    //         title: '¡Registro Exitoso!',
-    //         text: 'Establecimiento Registrado Exitosamente!',
-    //         icon: 'success',
-    //         timer: 3000,
-    //         showConfirmButton: false
-    //       }).then(() => {
-    //         this.isLoading = false
-    //         sessionStorage.clear();
-    //         const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(response.data), this.secretKey).toString();
-    //         sessionStorage.setItem('encryptedData', encryptedData);
+        }else{
+          const errors = response.errors ?? []
+          if(errors.length>0){
+            this.isLoading = false
+           this.showErrorMessages(errors)
+           return;
 
-    //         this.router.navigate(['/establecimientos/finaliza']);
-    //       });
+          }
 
-    //     }else{
-    //       const errors = response.errors ?? []
-    //       if(errors.length>0){
-    //         this.isLoading = false
-    //        this.showErrorMessages(errors)
-    //        return;
+        }
 
-    //       }
-
-    //     }
-
-    // }
-    // );
+    }
+    );
   }
 
   loadEstablecimiento(){
@@ -344,6 +346,7 @@ export class FormUpdateComponent implements OnInit, OnDestroy {
     horario : this.establecimiento?.horario,
     numero_trabajadores : this.establecimiento?.numero_trabajadores,
     id : this.establecimiento?.id,
+    inscripcion : this.establecimiento?.inscripcion,
 
 
 

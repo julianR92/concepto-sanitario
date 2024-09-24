@@ -59,12 +59,17 @@
         <span>Validar</span>
       </button>
     </div>
+    <div class="col-md-4 mt-4 text-end">
+      <a routerLink="/establecimientos" class="btn btn-link">Cancelar</a>
+    </div>
     <div *ngIf="myForm.valid" class="mt-2">
       <p class="text-success"> Formulario Completo <span class="govco-svg govco-thumbs-up"></span></p>
     </div>
     <div *ngIf="!myForm.valid" class="mt-2">
       <p class="text-danger"> Faltan campos por validar <span class="govco-svg govco-thumbs-down"></span></p>
     </div>
+
+
   </div>
    <!-- <div class="row mt-4">
     {{myForm.value |  json}}

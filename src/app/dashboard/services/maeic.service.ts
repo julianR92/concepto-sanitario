@@ -75,6 +75,15 @@ export class MaeicService {
        );
   }
 
+  updateEstablecimiento( establecimiento: Establecimiento[]):Observable <DataValidate>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.post<DataValidate>(`${this.baseUrl}/establecimiento-update`, establecimiento,{headers}).pipe(
+
+    );
+  }
+
   }
 
 
