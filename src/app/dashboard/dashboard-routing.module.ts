@@ -8,6 +8,9 @@ import { ValidarComponent } from './pages/validar/validar.component';
 import { SelectEstablecimientosComponent } from './pages/select-establecimientos/select-establecimientos.component';
 import { FinalizaComponent } from './pages/finaliza/finaliza.component';
 import { FormUpdateComponent } from './pages/form-update/form-update.component';
+import { ValidarAutoevaluacionComponent } from './pages/validar-autoevaluacion/validar-autoevaluacion.component';
+import { AutoevaluacionComponent } from './pages/autoevaluacion/autoevaluacion.component';
+import { FinalizaAutoevaluacionComponent } from './pages/finaliza-autoevaluacion/finaliza-autoevaluacion.component';
 
 const routes: Routes = [
   {
@@ -29,6 +32,18 @@ const routes: Routes = [
   {
     path: 'actualizar',
     component: ActualizarComponent
+   },
+  {
+    path: 'validar-autoevaluacion',
+    component: ValidarAutoevaluacionComponent
+   },
+  {
+    path: 'autoevaluacion',
+    component: AutoevaluacionComponent
+   },
+  {
+    path: 'autoevaluacion-finalizada',
+    component: FinalizaAutoevaluacionComponent
    },
   {
     path: 'actualizarEstablecimiento',

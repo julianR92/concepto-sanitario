@@ -1,0 +1,132 @@
+<general-miga [items]="breadcrumbItems"></general-miga>
+<titulo-tramite [title]="titulo" [subtitle]="subitulo" class="mt-2"></titulo-tramite>
+
+<h4 class="text-center mt-4"><img src="/img/numero-2.png" alt="" width="3%">&nbsp;&nbsp;&nbsp;Realizo mi Auto Evaluación</h4><br><br>
+
+<h5 class="text-center mt-0"><b>NIT: </b>  <span class="text-success">{{establecimiento?.nit}}</span> | <b>Inscripcion: </b><span class="text-success">{{establecimiento?.inscripcion}}</span></h5>
+<h5 class="text-center"><b>Razon Social: </b>  <span class="text-success"> {{establecimiento?.razon_social}}</span></h5>
+<h5 class="text-center"><b>Direccion: </b>  <span class="text-success"> {{establecimiento?.direccion}}</span></h5>
+<div class="row mt-5" *ngIf="!isLoading">
+
+  <div class="col-md-7 mt-5">
+    <ol>
+      <li> <p class="mb-3">Acta general de inspección, vigilancia y control</p><br>
+         <ngx-doc-viewer
+        [url]="docUrl"
+        viewer="google"
+        style="width:100%; height:600px;"
+        disableContent="popout"
+        >
+      </ngx-doc-viewer></li>
+    </ol>
+
+
+  </div>
+  <br>
+  <div class="col-md-5 mt-5">
+     <h6>Revisa el documento cuidadosamente y selecciona <span class="govco-svg govco-check-square bg-gov"></span> las opciónes que has leído y comprendido.</h6>
+     <form action="" class="mt-4" [formGroup]="myForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+         <ul class="list-group">
+          <li class="text-justify list-group-item">
+
+            1. He comprendido y entendido los <b>criterios de evaluación </b> del acta de inspección, vigilancia y control<div class="checkbox-seleccion-govco">
+              <input id="opt3" type="checkbox"  name="criterios" formControlName="criterios" /></div>
+
+              <span *ngIf="isValidField('criterios')" class="form-text text-danger">
+                {{ getFieldError("criterios") }}
+              </span>
+
+          </li>
+          <li class="mt-3" class="text-justify list-group-item" >
+
+             2. He realizado la <b>revision documental </b> solicitada en el acta de inspección, vigilancia y control<div class="checkbox-seleccion-govco">
+              <input id="opt3" type="checkbox"  name="revision_documental" formControlName="revision_documental" /></div>
+
+              <span *ngIf="isValidField('revision_documental')" class="form-text text-danger">
+                {{ getFieldError("revision_documental") }}
+              </span>
+
+          </li>
+          <li class="mt-3" class="text-justify list-group-item" >
+
+             3. He verificado la <b>las condiciones locativas </b> de mi establecimiento<div class="checkbox-seleccion-govco">
+              <input id="opt3" type="checkbox"  name="condiciones_locativas" formControlName="condiciones_locativas" /></div>
+
+              <span *ngIf="isValidField('condiciones_locativas')" class="form-text text-danger">
+                {{ getFieldError("condiciones_locativas") }}
+              </span>
+
+          </li>
+          <li class="mt-3" class="text-justify list-group-item" >
+
+             4. He verificado la <b>las condiciones sanitarias </b> de mi establecimiento<div class="checkbox-seleccion-govco">
+              <input id="opt3" type="checkbox"  name="condiciones_sanitarias" formControlName="condiciones_sanitarias" /></div>
+
+              <span *ngIf="isValidField('condiciones_sanitarias')" class="form-text text-danger">
+                {{ getFieldError("condiciones_sanitarias") }}
+              </span>
+
+          </li>
+          <li class="mt-3" class="text-justify list-group-item" >
+
+              5. He verificado la <b>las condiciones de saneamiento </b> de mi establecimiento tales como el abastecimiento del agua, manejo y disposición de vertimentos, manejo de residuos solidos, manejo integrado de plagas<div class="checkbox-seleccion-govco">
+              <input id="opt3" type="checkbox"  name="condiciones_saneamiento" formControlName="condiciones_saneamiento" /></div>
+
+              <span *ngIf="isValidField('condiciones_saneamiento')" class="form-text text-danger">
+                {{ getFieldError("condiciones_saneamiento") }}
+              </span>
+
+          </li>
+          <li class="mt-3" class="text-justify list-group-item" >
+             6. He verificado la <b>las condiciones de gestion del riesgo </b> necesarios de mi establecimiento<div class="checkbox-seleccion-govco">
+              <input id="opt3" type="checkbox"  name="condiciones_gestion" formControlName="condiciones_gestion" /></div>
+              <span *ngIf="isValidField('condiciones_gestion')" class="form-text text-danger">
+                {{ getFieldError("condiciones_gestion") }}
+              </span>
+
+          </li>
+         </ul>
+
+         <div class="col-md-6 mt-4">
+
+          <re-captcha formControlName="recaptcha" siteKey="{{siteKey}}" class="mb-3"></re-captcha>
+          <span *ngIf="isValidField('recaptcha')" class="form-text text-danger">
+            {{ 'Validar captcha es requerido' }}
+          </span>
+
+          <button
+          type="submit"
+          class="btn-govco outline-secundary-btn-govco icon-btn-govco mt-3"
+          [disabled]="!myForm.valid"
+        >
+        <span class="govco-svg govco-check-circle"></span>
+          <span>Guardar Auto evaluación</span>
+        </button>
+
+        <div *ngIf="myForm.valid" class="mt-2">
+          <p class="text-success"> Auto Evaluación Completa <span class="govco-svg govco-thumbs-up"></span></p>
+        </div>
+        <div *ngIf="!myForm.valid" class="mt-2">
+          <p class="text-danger"> Auto Evaluación Incompleta <span class="govco-svg govco-thumbs-down"></span></p>
+        </div>
+        </div>
+<!--
+          <div class="row mt-4">
+    {{myForm.value |  json}}
+  </div> -->
+
+
+     </form>
+
+  </div>
+  <div class="col-md-12 mt-3">
+    <a routerLink="/establecimientos" class="btn btn-link">Cancelar</a>
+   </div>
+</div>
+
+<div class="mt-8" *ngIf="isLoading">
+  <loader-gov></loader-gov>
+</div>
+
+
+

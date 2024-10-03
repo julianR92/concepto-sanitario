@@ -14,6 +14,7 @@ import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@a
 import { HmacInterceptor } from './interceptors/hmac.interceptors';
 import { ErrorInterceptor } from './interceptors/error.interceptors';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
 
 
 registerLocaleData(localeEs);
@@ -30,6 +31,7 @@ registerLocaleData(localeEs);
     SharedModule,
     MainModule,
     ToastrModule.forRoot(),
+    NgxDocViewerModule
   ],
   providers: [
     {provide: LOCALE_ID,useValue:'es-CO'},

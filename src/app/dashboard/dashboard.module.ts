@@ -14,6 +14,10 @@ import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha-2';
 import { FinalizaComponent } from './pages/finaliza/finaliza.component';
 import { RouterModule } from '@angular/router';
 import { FormUpdateComponent } from './pages/form-update/form-update.component';
+import { ValidarAutoevaluacionComponent } from './pages/validar-autoevaluacion/validar-autoevaluacion.component';
+import { AutoevaluacionComponent } from './pages/autoevaluacion/autoevaluacion.component';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
+import { FinalizaAutoevaluacionComponent } from './pages/finaliza-autoevaluacion/finaliza-autoevaluacion.component';
 
 
 
@@ -27,7 +31,10 @@ import { FormUpdateComponent } from './pages/form-update/form-update.component';
     ValidarComponent,
     SelectEstablecimientosComponent,
     FinalizaComponent,
-    FormUpdateComponent
+    FormUpdateComponent,
+    ValidarAutoevaluacionComponent,
+    AutoevaluacionComponent,
+    FinalizaAutoevaluacionComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +44,9 @@ import { FormUpdateComponent } from './pages/form-update/form-update.component';
     ReactiveFormsModule,
     RecaptchaModule,
     RecaptchaFormsModule,
-    RouterModule
+    RouterModule,
+    NgxDocViewerModule,
+
 
   ],
 

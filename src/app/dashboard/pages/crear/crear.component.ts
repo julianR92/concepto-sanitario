@@ -231,7 +231,7 @@ export class CrearComponent implements OnInit {
     ],
     nombre_comercial: [
       '',
-      [Validators.maxLength(100), Validators.pattern(this.vs.numberStringPattern)],
+      [Validators.maxLength(100), Validators.pattern(this.vs.razonSocialPattern)],
     ],
     registro_iyc: [
       '',

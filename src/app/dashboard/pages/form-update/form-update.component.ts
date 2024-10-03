@@ -47,7 +47,7 @@ export class FormUpdateComponent implements OnInit, OnDestroy {
 
   ];
   public titulo:string = 'TRAMITE DE CONCEPTO SANITARIO'
-  public subitulo :string = 'Alcaldía de Bucaramanga'
+  public subitulo :string = 'Actualiza'
 
   constructor( private router: Router, private maeic: MaeicService,private toastr: ToastrService,  private fb: FormBuilder,
     private vs: ValidatorsService,){}

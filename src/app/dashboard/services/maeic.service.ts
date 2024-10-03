@@ -83,6 +83,22 @@ export class MaeicService {
 
     );
   }
+  autoEvaluacion( autoevaluacion:[]):Observable <DataValidate>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.post<DataValidate>(`${this.baseUrl}/establecimiento-autoevaluacion`, autoevaluacion,{headers}).pipe(
+
+    );
+  }
+
+  validateAutoEvaluacionById(id:string){
+    return this.http.get<DataValidate>(`${ this.baseUrl }/validate/autoevaluacion/${id}`)
+      .pipe(
+        map(response => response),
+        catchError(() => of(null))
+       );
+  }
 
   }
 

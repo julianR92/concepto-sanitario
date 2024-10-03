@@ -1,0 +1,29 @@
+.checkbox-seleccion-govco {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 0.938rem;
+  line-height: 1.5; /* Ajusta la altura de línea del texto */
+}
+
+.checkbox-seleccion-govco input {
+  margin-left: 0.5rem; /* Espacio entre el texto y el checkbox */
+  vertical-align: middle;
+  width: 1.5rem;
+  height: 1.5rem;
+  transform: translateY(3px); /* Ajusta la posición vertical del checkbox */
+
+}
+
+.table-list {
+  display: table;
+  width: 100%;
+  table-layout: fixed; /* Ajusta el ancho de las columnas para que sean uniformes */
+}
+
+.table-row {
+  display: table-row;
+  margin-bottom: 0.938rem;
+}
+
+

@@ -33,6 +33,7 @@ export interface ResponseSucesss{
   razon_social? : string;
   direccion? : string;
   complemento_direccion? : string;
+  mensaje?: string
 
 
 }

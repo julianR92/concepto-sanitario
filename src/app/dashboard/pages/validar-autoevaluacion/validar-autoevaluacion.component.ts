@@ -10,12 +10,11 @@ import Swal from 'sweetalert2';
 import * as CryptoJS from 'crypto-js';
 
 @Component({
-  selector: 'app-actualizar',
-  templateUrl: './actualizar.component.html',
-  styleUrl: './actualizar.component.css'
+  selector: 'app-validar-autoevaluacion',
+  templateUrl: './validar-autoevaluacion.component.html',
+  styleUrl: './validar-autoevaluacion.component.css'
 })
-export class ActualizarComponent {
-
+export class ValidarAutoevaluacionComponent {
   public siteKey:string = environments.siteKey ;
   public secretKey:string = environments.SECRET_KEY
 
@@ -23,11 +22,11 @@ export class ActualizarComponent {
     { label: 'Inicio', url: 'https://www.bucaramanga.gov.co/', ngLink:false },
     { label: 'Concepto Sanitario', url:'/', ngLink:true},
     { label: 'Establecimientos', url:'/establecimientos', ngLink:true},
-    { label: 'Actualizar', url:'', ngLink:false},
+    { label: 'Validar Auto-Evaluacion', url:'', ngLink:false},
 
   ];
   public titulo:string = 'TRAMITE DE CONCEPTO SANITARIO'
-  public subitulo :string = 'Actualiza'
+  public subitulo :string = 'Auto-Evaluación'
 
   public isLoading = false;
   constructor(
@@ -98,7 +97,7 @@ export class ActualizarComponent {
             text: `Inscripcion: ${this.myForm.value.inscripcion} validada exitosamente`,
             icon: "success"
           });
-          return this.router.navigate(['/establecimientos/actualizarEstablecimiento']);
+          return this.router.navigate(['/establecimientos/autoevaluacion']);
         }else{
           sessionStorage.clear();
           Swal.fire({
