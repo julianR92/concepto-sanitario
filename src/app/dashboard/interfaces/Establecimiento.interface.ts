@@ -48,6 +48,8 @@ export interface Establecimiento {
   letra_dos?: string;
   letra_tres?: string;
   tipo: string;
+  previousValues? : {},
+  currentValues?:{}
 }
 
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreadcrumbItem } from '../../../shared/interfaces/miga.interface';
 
 @Component({
@@ -6,7 +6,7 @@ import { BreadcrumbItem } from '../../../shared/interfaces/miga.interface';
   templateUrl: './principal.component.html',
   styleUrl: './principal.component.css'
 })
-export class PrincipalComponent {
+export class PrincipalComponent implements OnInit {
   public breadcrumbItems: BreadcrumbItem[] = [
     { label: 'Inicio', url: 'https://www.bucaramanga.gov.co/', ngLink:false },
     { label: 'Concepto Sanitario', url:'/', ngLink:true},
@@ -15,5 +15,9 @@ export class PrincipalComponent {
   ];
   public titulo:string = 'TRAMITE DE CONCEPTO SANITARIO'
   public subitulo :string = 'Alcaldía de Bucaramanga'
+
+  ngOnInit(): void {
+    sessionStorage.clear();
+  }
 
 }

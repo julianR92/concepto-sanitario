@@ -37,6 +37,8 @@ export class FormUpdateComponent implements OnInit, OnDestroy {
   public comuna: Comuna | null = null;
   public isLoading: boolean = false;
   public comercio: Establecimiento[] = []
+  public initialValues: any = {};
+  public editedValues: any = {};
 
   public breadcrumbItems: BreadcrumbItem[] = [
     { label: 'Inicio', url: 'https://www.bucaramanga.gov.co/', ngLink:false },
@@ -200,7 +202,9 @@ export class FormUpdateComponent implements OnInit, OnDestroy {
     horario : ['', [Validators.maxLength(150), Validators.pattern(this.vs.mulitplePattern)]],
     recaptcha: ['', Validators.required],
     direccion_actual : ['', Validators.required],
-    inscripcion : ['', Validators.required]
+    inscripcion : ['', Validators.required],
+    previousValues : [''],
+    currentValues  : ['']
 
 
   }, {
@@ -264,11 +268,22 @@ export class FormUpdateComponent implements OnInit, OnDestroy {
       this.myForm.markAllAsTouched();
       return;
     }
+    if(this.myForm.dirty){
+      this.editedValues = {};
+      this.editedValues = { ...this.myForm.value };
+      delete this.editedValues.recaptcha;
+    }
+    this.myForm.patchValue({
+      previousValues: this.initialValues,
+      currentValues: this.editedValues
+    })
 
     if(!this.myForm.value?.calle){
       this.myForm.get('direccion')?.setValue(null, {emitEvent:false});
 
     }
+
+
 
 
    this.comercio = this.myForm.value;
@@ -351,6 +366,7 @@ export class FormUpdateComponent implements OnInit, OnDestroy {
 
 
   });
+  this.initialValues = { ...this.myForm.value };
 
   }
 

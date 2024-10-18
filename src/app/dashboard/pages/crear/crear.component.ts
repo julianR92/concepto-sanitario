@@ -95,7 +95,9 @@ export class CrearComponent implements OnInit {
     this.myForm.patchValue({
       nit: this.nit,
       tipo: this.tipo,
-      razon_social: this.quitarComillas(this.dataCec[0]?.MaeProNom?.trim()) || '',
+      razon_social: (this.dataCec && this.dataCec[0] && this.dataCec[0].MaeProNom && this.dataCec[0].MaeProNom.trim())
+      ? this.quitarComillas(this.dataCec[0].MaeProNom.trim())
+      : '',
       registro_iyc: this.dataCec[0]?.MaeNum?.trim() || '',
       matricula_mercantil: this.dataCec[0]?.RadMatMer?.trim() || '',
       direccion_maeic: this.dataCec[0]?.MaeDir?.trim() || '',
@@ -294,6 +296,7 @@ export class CrearComponent implements OnInit {
     id_ciuu : ['', []],
     numero_trabajadores : ['', [Validators.maxLength(5), Validators.pattern(this.vs.numberPattern)]],
     horario : ['', [Validators.maxLength(150), Validators.pattern(this.vs.mulitplePattern)]],
+    observaciones : ['', [Validators.maxLength(150), Validators.pattern(this.vs.mulitplePattern)]],
     tratamiento_datos : ['', [Validators.required]],
     acepto_terminos : ['', [Validators.required]],
     confirmo_mayor_edad : ['', [Validators.required]],

@@ -220,7 +220,7 @@
 </div>
 <div class="col-md-3 mt-3">
   <div class="entradas-de-texto-govco">
-    <label for="calle">Corrgimiento</label>
+    <label for="calle">Corregimiento</label>
     <select class="form-select" aria-label="Default select example" name="corregimiento" formControlName="corregimiento">
     <option value="">Seleccione...</option>
     <option *ngFor="let corre of corregimientos" [value]="corre?.nombre">{{corre.nombre}}</option>
@@ -441,7 +441,14 @@
 </div>
 </div>
 
-<div class="col"></div>
+<div class="col-md-6 mt-3">
+    <label for="calle">Observaciones</label>
+    <textarea class="form-control" rows="4" type="text" name="observaciones" id="observaciones"  formControlName="observaciones" autocomplete="off" placeholder="Ej: Mi actividad economica no se ajusta.. " #observaciones msjError="Solo se permiten numeros letras, numeros, y ,.-#:;" style="resize: none;"></textarea>
+    <span *ngIf="isValidField('observaciones')" class="form-text text-danger">
+      {{ getFieldError("observaciones", observaciones.getAttribute('msjError')) }}
+    </span>
+</div>
+
 <h6 class="mt-5">Aviso de privacidad y autorización tratamiento de datos personales</h6><hr>
 <div class="col-md-4">
   <div class="checkbox-seleccion-govco">
