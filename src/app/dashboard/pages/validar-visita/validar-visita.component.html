@@ -1,0 +1,84 @@
+<general-miga [items]="breadcrumbItems"></general-miga>
+<titulo-tramite [title]="titulo" [subtitle]="subitulo" class="mt-2"></titulo-tramite>
+
+<div class="row animate__animated animate__fadeIn animate__slow" *ngIf="!isLoading">
+  <form action="" class="" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <h6 class="text-center mt-4">Primero validemos tu Inscripción</h6>
+    <div class="row mt-4">
+    <div class="col-md-4">
+      <div class="entradas-de-texto-govco m-2">
+        <label for="nit">Nit*(sin digito de verificación)</label>
+        <input
+          type="text"
+          id="nit"
+          aria-describedby="note2"
+          placeholder="Ejemplo: 890201222"
+          value=""
+          #nit
+          formControlName="nit"
+          msjError="Solo se acepta formato numerico"
+          (keypress)="onlyNumbers($event)"
+        />
+        <span *ngIf="isValidField('nit')" class="form-text text-danger">
+          {{ getFieldError("nit", nit.getAttribute('msjError')) }}
+        </span>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="entradas-de-texto-govco m-2">
+        <label for="inscripcion">Numero Unico de Inscripcion*</label>
+        <input
+          type="text"
+          id="inscripcion"
+          aria-describedby="note2"
+          placeholder="Ejemplo: IVC000001"
+          value=""
+          #inscripcion
+          formControlName="inscripcion"
+          msjError="Solo acepta el formato IVC000000"
+          (input)="toUpperCase($event)"
+
+        />
+        <span *ngIf="isValidField('inscripcion')" class="form-text text-danger">
+          {{ getFieldError("inscripcion", inscripcion.getAttribute('msjError')) }}
+        </span>
+      </div>
+    </div>
+    <div class="w-100"></div>
+    <div class="col-md-4 mt-3 ml-2">
+      <re-captcha formControlName="recaptcha" siteKey="{{siteKey}}" class="mb-3"></re-captcha>
+    </div>
+    <div class="w-100"></div>
+    <div class="col-md-4 mt-5">
+      <button
+        type="submit"
+        class="btn-govco outline-secundary-btn-govco icon-btn-govco"
+         [disabled]="!myForm.valid"
+      >
+        <span class="govco-svg govco-check" aria-hidden="true"></span>
+        <span>Validar</span>
+      </button>
+    </div>
+    <div class="col-md-4 mt-4 text-end">
+      <a routerLink="/establecimientos" class="btn btn-link">Cancelar</a>
+      <a routerLink="/establecimientos/validar-autoevaluacion" class="btn btn-link">Ir AutoEvaluacíon</a>
+    </div>
+    <div *ngIf="myForm.valid" class="mt-2">
+      <p class="text-success"> Formulario Completo <span class="govco-svg govco-thumbs-up"></span></p>
+    </div>
+    <div *ngIf="!myForm.valid" class="mt-2">
+      <p class="text-danger"> Faltan campos por validar <span class="govco-svg govco-thumbs-down"></span></p>
+    </div>
+
+
+  </div>
+   <!-- <div class="row mt-4">
+    {{myForm.value |  json}}
+  </div> -->
+  </form>
+
+</div>
+<!-- laoder -->
+<div class="mt-8" *ngIf="isLoading">
+  <loader-gov></loader-gov>
+</div>

@@ -17,20 +17,22 @@
 
     <ng-template #noMensaje>
     </ng-template>
-      <p class="text-center" style="font-weight: bolder;">Este es el segundo paso para realizar el tramite de solicitud del concepto sanitario.</p><br>
-      <p>Debe seguir los siguientes pasos:</p>
+      <p class="text-center" style="font-weight: bolder;">Ya has concluido la solicitud de tu concepto sanitario</p><br>
       <ol>
-        <li>Inscribirse ✅ </li>
+        <li>Inscripcíon ✅ </li>
         <li>Realizar Auto Evaluación ✅ </li>
-        <li>Solicitar la visita del personal técnico</li>
+        <li>Solicitar la visita del personal técnico ✅</li>
       </ol>
-      <p class="text-center">  No olvides conservar tu número de inscripción</p>
-      <h3 class="text-center">{{dataStore[0].inscripcion}}</h3>
+      <p class="text-center">  No olvides conservar tu número de radicado de la visita</p>
+      <h3 class="text-center">{{dataStore[0].radicado}}</h3>
       <p class="text-center">{{dataStore[0].razon_social}}</p>
       <p class="text-center">{{dataStore[0].direccion}} {{dataStore[0].complemento_direccion}}</p>
       <div class="row ">
+        <div class="col-md-12">
+          <app-recomendaciones></app-recomendaciones>
+        </div>
         <div class="col-md-6">
-          <a routerLink="./establecimientos" class="btn btn-link">Solicitar Visita</a>
+          <a routerLink="./establecimientos" class="btn btn-link">Volver</a>
 
         </div>
         <div class="col-md-6 text-end">
@@ -41,4 +43,3 @@
 </div>
 
 </div>
-

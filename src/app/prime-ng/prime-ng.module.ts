@@ -6,6 +6,7 @@ import { CardModule } from 'primeng/card';
 import { FieldsetModule } from 'primeng/fieldset';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
+import { FileUploadModule } from 'primeng/fileupload';
 
 
 
@@ -27,7 +28,8 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
     CardModule,
     FieldsetModule,
     AvatarGroupModule,
-    AvatarModule
+    AvatarModule,
+    FileUploadModule,
 
 
 

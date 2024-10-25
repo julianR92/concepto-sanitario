@@ -18,6 +18,12 @@ import { ValidarAutoevaluacionComponent } from './pages/validar-autoevaluacion/v
 import { AutoevaluacionComponent } from './pages/autoevaluacion/autoevaluacion.component';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { FinalizaAutoevaluacionComponent } from './pages/finaliza-autoevaluacion/finaliza-autoevaluacion.component';
+import { ValidarVisitaComponent } from './pages/validar-visita/validar-visita.component';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
+import { PrimeNgModule } from '../prime-ng/prime-ng.module';
+import { RecomendacionesComponent } from './components/recomendaciones/recomendaciones.component';
+import { FinalizaVisitaComponent } from './pages/finaliza-visita/finaliza-visita.component';
+import { InformacionVisitaComponent } from './pages/informacion-visita/informacion-visita.component';
 
 
 
@@ -34,7 +40,12 @@ import { FinalizaAutoevaluacionComponent } from './pages/finaliza-autoevaluacion
     FormUpdateComponent,
     ValidarAutoevaluacionComponent,
     AutoevaluacionComponent,
-    FinalizaAutoevaluacionComponent
+    FinalizaAutoevaluacionComponent,
+    ValidarVisitaComponent,
+    FileUploadComponent,
+    RecomendacionesComponent,
+    FinalizaVisitaComponent,
+    InformacionVisitaComponent
   ],
   imports: [
     CommonModule,
@@ -46,6 +57,7 @@ import { FinalizaAutoevaluacionComponent } from './pages/finaliza-autoevaluacion
     RecaptchaFormsModule,
     RouterModule,
     NgxDocViewerModule,
+    PrimeNgModule
 
 
   ],

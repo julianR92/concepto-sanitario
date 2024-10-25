@@ -1,0 +1,23 @@
+<p-fileUpload
+    name="file"
+    (onSelect)="onSelect($event)"
+    (onClear)="onRemove()"
+    (onRemove)="onRemove()"
+    [multiple]="false"
+    accept="application/pdf"
+    [customUpload]="true"
+    showUploadButton="false"
+    invalidFileSizeMessageSummary="Tamaño maximo permitido 3MB"
+    chooseLabel="Seleccione.."
+    cancelLabel="Cancelar"
+    previewWidth="100"
+    fileLimit="1"
+    maxFileSize="3000000">
+        <ng-template pTemplate="content">
+            <!-- <ul *ngIf="uploadedFiles.length">
+                <li *ngFor="let file of uploadedFiles">
+                    {{ file.name }} - {{ file.size }} bytes
+                </li>
+            </ul> -->
+        </ng-template>
+</p-fileUpload>

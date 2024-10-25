@@ -1,0 +1,83 @@
+<div class="aservice-container">
+  <a href="{{urlManual}}" tabindex="-1" class="aservice-spacing" id="aserviceTutorial" target="_blank">
+      <div class="aservice" tabindex="0">
+        <div class="aservice-item link-card">
+          <p class="aservice-text-govco aservice-link-govco aservice-spacing-card">
+            Te explicamos con tutoriales
+          </p>
+        </div>
+      </div>
+    </a>
+<div class="aservice aservice-spacing" id="aserviceConsulta">
+  <div class="aservice-item">
+    <h2 class="aservice-header-govco" id="headingOne">
+      <button class="button-aservice-govco collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" id="collapseOneButton">
+        <a class="aservice-text-govco">¿Tienes dudas sobre este trámite?</a>
+      </button>
+    </h2>
+    <div id="collapseOne" class="aservice-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#aserviceExampleOne">
+      <div class="aservice-body">
+        <div class="row aservice-row-govco">
+          <div class="aservice-mailto-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#3366cc" d="M4 20q-.825 0-1.412-.587T2 18V6q0-.825.588-1.412T4 4h16q.825 0 1.413.588T22 6v12q0 .825-.587 1.413T20 20zm8-7l8-5V6l-8 5l-8-5v2z"/></svg>&nbsp; &nbsp;
+            <a href="mailto:contactenos@bucaramanga.gov.co" class="aservice-mailto-govco">Enviar correo electrónico</a>
+          </div>
+        </div>
+        <div class="row aservice-row-govco aservice-row-center-govco">
+
+          <p class="aservice-number-govco"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#3366cc" d="M19.95 21q-3.125 0-6.175-1.362t-5.55-3.863t-3.862-5.55T3 4.05q0-.45.3-.75t.75-.3H8.1q.35 0 .625.238t.325.562l.65 3.5q.05.4-.025.675T9.4 8.45L6.975 10.9q.5.925 1.187 1.787t1.513 1.663q.775.775 1.625 1.438T13.1 17l2.35-2.35q.225-.225.588-.337t.712-.063l3.45.7q.35.1.575.363T21 15.9v4.05q0 .45-.3.75t-.75.3"/></svg>&nbsp; &nbsp; (607) 6337000</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="aservice" id="aserviceProceso">
+  <div class="aservice-item">
+    <h2 class="aservice-header-govco" id="headingTwo">
+      <button class="button-aservice-govco collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" id="collapseTwoButton">
+        <a class="aservice-text-govco">¿Cómo fue tu experiencia durante el proceso?</a>
+      </button>
+    </h2>
+    <div id="collapseTwo" class="aservice-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#aserviceExampleTwo">
+      <div class="aservice-body aservice-body-two">
+        <ul class="aservice-item-menu-ul">
+          <li class="aservice-item-menu-li">
+            <a class="dropdown-item aservice-item-govco" id="easy_item" (click)="onEasyClick()"  style="cursor: pointer;">
+              <div class="aservice-item-icon-govco">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 36 36"><path fill="#3366cc" d="M18 2a16 16 0 1 0 16 16A16 16 0 0 0 18 2m0 30a14 14 0 1 1 14-14a14 14 0 0 1-14 14" class="clr-i-outline clr-i-outline-path-1"/><path fill="#3366cc" d="M28 12.1a1 1 0 0 0-1.41 0l-11.1 11.05l-6-6A1 1 0 0 0 8 18.53L15.49 26L28 13.52a1 1 0 0 0 0-1.42" class="clr-i-outline clr-i-outline-path-2"/><path fill="none" d="M0 0h36v36H0z"/></svg>
+              </div>
+              <span>fácil</span>
+            </a>
+          </li>
+          <li class="aservice-item-menu-li">
+            <a class="dropdown-item aservice-item-govco" id="hard_item" (click)="onHardClick()" style="cursor: pointer;">
+              <div class="aservice-item-icon-govco">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 16 16"><path fill="#3366cc" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/></svg>
+              </div>
+              <span>difícil</span>
+            </a>
+          </li>
+        </ul>
+        <div class="alert aservice-alerta-govco aservice-alerta-success-govco asuccess" id="alerta-service" style="display: none;">
+          <p class="aservice-alerta-content-text">
+            <span>¡Gracias!</span><br>Tus comentarios nos ayudan a mejorar los servicios de nuestro municipio.
+          </p>
+        </div>
+        <!-- <div class="container-button" id="comentarios1-button" style="display: none;">
+          <button type="button" class="btn btn-primary btn-service-govco btn-contorno" onclick="verComentarios()">Envía tus comentarios</button>
+        </div>
+        <div class="aservice-comentarios" id="aservice-comentarios" style="display: none;">
+          <p class="aservice-comentarios-fixed-text">Escribe tus comentarios:</p>
+          <textarea class="aservice-comentarios-textarea" id="aservice-comentarios-textarea" placeholder="Queremos conocer tu experiencia, sugerencias y consejos..." onkeypress="contadorTextArea()" aria-label="area de comentarios"></textarea>
+          <p class="aservice-comentarios-alert" id="aservice-comentarios-alert" style="display: none;">
+            * Para poder enviar su comentario, este debe contener, al menos, 10 caracteres.
+          </p>
+        </div>
+        <div class="container-button" id="comentarios2-button" style="display: none;">
+          <button type="button" id="comentarios2-button-item" disabled="true" class="btn btn-primary btn-service-govco btn-contorno" onclick="enviarComentarios()">Envía tus comentarios</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+</div>

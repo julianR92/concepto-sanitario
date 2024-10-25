@@ -1,1 +1,129 @@
-<p>visita works!</p>
+<general-miga [items]="breadcrumbItems"></general-miga>
+<titulo-tramite
+  [title]="titulo"
+  [subtitle]="subitulo"
+  class="mt-2"
+></titulo-tramite>
+
+<h4 class="text-center mt-4">
+  <img src="/img/numero-3.png" alt="" width="3%" />&nbsp;&nbsp;&nbsp;Solicito mi
+  visita técnica
+</h4>
+<br /><br />
+
+<h5 class="text-center mt-0">
+  <b>NIT: </b> <span class="text-success">{{ establecimiento?.nit }}</span> |
+  <b>Inscripcion: </b
+  ><span class="text-success">{{ establecimiento?.inscripcion }}</span>
+</h5>
+<h5 class="text-center">
+  <b>Razon Social: </b>
+  <span class="text-success"> {{ establecimiento?.razon_social }}</span>
+</h5>
+<h5 class="text-center">
+  <b>Direccion: </b>
+  <span class="text-success"> {{ establecimiento?.direccion }}</span>
+</h5>
+<h5 class="text-center">
+  <b>Barrio: </b>
+  <span class="text-success"> {{ establecimiento?.barrio }}</span>
+</h5>
+<div class="row mt-3" *ngIf="!isLoading">
+  <div class="col-md-8 mt-4">
+    <form
+      action=""
+      class="mt-4"
+      [formGroup]="myForm"
+      (ngSubmit)="onSubmit()"
+      *ngIf="!isLoading"
+    >
+      <!-- <linea-avance [step]="2"></linea-avance> -->
+      <p>Para solicitar la visita debes cargar los siguientes documentos:</p>
+      <div class="row mt-5">
+        <div class="col-md-6 mt-3">
+          <p style="text-align: justify">
+            <b>1. Documento de representación* <br /></b>
+            Los documentos aceptados como prueba de representación pueden ser:
+            Cámara de Comercio, Registro Único Tributario (RUT) o Resolución de
+            Habitabilición <br />
+            <span class="text-danger" style="font-size: 12px"
+              >Solo se aceptan documentos .pdf de max 3MB</span
+            >
+          </p>
+          <file-upload
+            (fileSelected)="onFileRepresentacion($event)"
+          ></file-upload>
+        </div>
+        <div class="col-md-6 mt-3">
+          <p style="text-align: justify">
+            <b>2. Concepto de uso de suelo <br /></b>
+            Si no cuentas con el concepto de uso de suelo, puedes solicitarlo
+            <a href="https://usodesuelo.bucaramanga.gov.co/" target="_blank"
+              >aquí</a
+            >. Tambien puedes acercarte a la Secretaría de Planeación y
+            presentar una solicitud.
+            <br />
+            <span class="text-danger" style="font-size: 12px"
+              >Solo se aceptan documentos .pdf de max 3MB</span
+            >
+          </p>
+          <file-upload (fileSelected)="onFileUso($event)"></file-upload>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <app-recomendaciones></app-recomendaciones>
+
+          <div class="col-md-6 mt-4">
+            <re-captcha
+              formControlName="recaptcha"
+              siteKey="{{ siteKey }}"
+              class="mb-3"
+            ></re-captcha>
+            <span
+              *ngIf="isValidField('recaptcha')"
+              class="form-text text-danger"
+            >
+              {{ "Validar captcha es requerido" }}
+            </span>
+          </div>
+
+          <button
+            type="submit"
+            class="btn-govco outline-secundary-btn-govco icon-btn-govco mt-3"
+            [disabled]="!myForm.valid"
+          >
+            <span class="govco-svg govco-check-circle"></span>
+            <span>Cargar información</span>
+          </button>
+        </div>
+      </div>
+      <div *ngIf="myForm.valid" class="mt-2">
+        <p class="text-success">  Formulario completo <span class="govco-svg govco-thumbs-up"></span></p>
+      </div>
+      <div *ngIf="!myForm.valid" class="mt-2">
+        <p class="text-danger"> Formulario Incompleto <span class="govco-svg govco-thumbs-down"></span></p>
+      </div>
+      <!-- <div class="row mt-4">
+        {{ myForm.value | json }}
+      </div> -->
+
+
+
+    </form>
+  </div>
+  <br />
+  <div class="col-md-4 mt-5">
+    <area-servicio
+      urlManual="https://tramitesenlinea.bucaramanga.gov.co/library/Manuales/M-TIC-1400-170-011%20Manual%20usuario%20(ciudadano)%20parqueadero%20publico.pdf"
+      tramite="CONCEPTO SANITARIO"
+    ></area-servicio>
+  </div>
+  <div class="col-md-12 mt-3">
+    <a routerLink="/establecimientos" class="btn btn-link">Cancelar</a>
+  </div>
+</div>
+
+<div class="mt-8" *ngIf="isLoading">
+  <loader-gov></loader-gov>
+</div>

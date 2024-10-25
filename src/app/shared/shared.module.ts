@@ -8,6 +8,8 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { AlertNotificationComponent } from './components/alert-notification/alert-notification.component';
 import { RemoveZerosPipe } from './pipes/remove-zeros.pipe';
 import { AlertInfoComponent } from './components/alert-info/alert-info.component';
+import { AreaServicioComponent } from './components/area-servicio/area-servicio.component';
+import { LineaAvanceComponent } from './components/linea-avance/linea-avance.component';
 
 
 
@@ -20,7 +22,9 @@ import { AlertInfoComponent } from './components/alert-info/alert-info.component
     LoaderComponent,
     AlertNotificationComponent,
     RemoveZerosPipe,
-    AlertInfoComponent
+    AlertInfoComponent,
+    AreaServicioComponent,
+    LineaAvanceComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +37,9 @@ import { AlertInfoComponent } from './components/alert-info/alert-info.component
     LoaderComponent,
     AlertNotificationComponent,
     RemoveZerosPipe,
-    AlertInfoComponent
+    AlertInfoComponent,
+    AreaServicioComponent,
+    LineaAvanceComponent
 
   ]
 })

@@ -11,6 +11,9 @@ import { FormUpdateComponent } from './pages/form-update/form-update.component';
 import { ValidarAutoevaluacionComponent } from './pages/validar-autoevaluacion/validar-autoevaluacion.component';
 import { AutoevaluacionComponent } from './pages/autoevaluacion/autoevaluacion.component';
 import { FinalizaAutoevaluacionComponent } from './pages/finaliza-autoevaluacion/finaliza-autoevaluacion.component';
+import { ValidarVisitaComponent } from './pages/validar-visita/validar-visita.component';
+import { FinalizaVisitaComponent } from './pages/finaliza-visita/finaliza-visita.component';
+import { InformacionVisitaComponent } from './pages/informacion-visita/informacion-visita.component';
 
 const routes: Routes = [
   {
@@ -38,6 +41,10 @@ const routes: Routes = [
     component: ValidarAutoevaluacionComponent
    },
   {
+    path: 'validar-visita',
+    component: ValidarVisitaComponent
+   },
+  {
     path: 'autoevaluacion',
     component: AutoevaluacionComponent
    },
@@ -46,8 +53,16 @@ const routes: Routes = [
     component: FinalizaAutoevaluacionComponent
    },
   {
+    path: 'visita-finalizada',
+    component: FinalizaVisitaComponent
+  },
+  {
     path: 'actualizarEstablecimiento',
     component: FormUpdateComponent
+   },
+  {
+    path: 'informacion-visita',
+    component: InformacionVisitaComponent
    },
   {
     path: 'visita', component: VisitaComponent

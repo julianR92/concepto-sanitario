@@ -5,6 +5,7 @@ import { catchError, map, Observable, of, throwError } from 'rxjs';
 import { DataMaeic, DataValidate, Maeic } from '../interfaces/Maeic.interface';
 import { Establecimiento } from '../interfaces/Establecimiento.interface';
 import { Comuna, Municipio, Options } from '../interfaces/Options.interface';
+import { DataVisita } from '../interfaces/Visita.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -99,6 +100,27 @@ export class MaeicService {
         catchError(() => of(null))
        );
   }
+
+  validateVisita(id:string|number){
+    return this.http.get<DataValidate>(`${ this.baseUrl }/validate/visita/${id}`)
+      .pipe(
+        map(response => response),
+        catchError(() => of(null))
+       );
+  }
+  solicitarVisita( visita:FormData):Observable <DataValidate>{
+    return this.http.post<DataValidate>(`${this.baseUrl}/solicitar-visita`, visita).pipe(
+    );
+  }
+
+  getDataVisita(radicado:string|number){
+    return this.http.get<DataVisita>(`${ this.baseUrl }/getData/visita/${radicado}`)
+      .pipe(
+        map(response => response),
+        catchError(() => of(null))
+       );
+  }
+
 
   }
 

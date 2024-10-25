@@ -1,0 +1,234 @@
+<general-miga [items]="breadcrumbItems"></general-miga>
+<titulo-tramite
+  [title]="titulo"
+  [subtitle]="subitulo"
+  class="mt-2"
+></titulo-tramite>
+
+<div
+  class="row animate__animated animate__fadeIn animate__slow"
+  *ngIf="!isLoading && visita.length == 0"
+>
+  <form action="" class="" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <h6 class="text-center mt-4">Primero validemos tu # de Visita</h6>
+    <div class="row mt-4">
+      <div class="col-md-4">
+        <div class="entradas-de-texto-govco m-2">
+          <label for="radicado">Numero Radicado Visita*</label>
+          <input
+            type="text"
+            id="radicado"
+            aria-describedby="note2"
+            placeholder="Ejemplo: IVC000001-10"
+            value=""
+            #radicado
+            formControlName="radicado"
+            msjError="Solo acepta el formato IVC000000-10"
+            (input)="toUpperCase($event)"
+          />
+          <span *ngIf="isValidField('radicado')" class="form-text text-danger">
+            {{ getFieldError("radicado", radicado.getAttribute("msjError")) }}
+          </span>
+        </div>
+      </div>
+      <div class="w-100"></div>
+      <div class="col-md-4 mt-3 ml-2">
+        <re-captcha
+          formControlName="recaptcha"
+          siteKey="{{ siteKey }}"
+          class="mb-3"
+        ></re-captcha>
+      </div>
+      <div class="w-100"></div>
+      <div class="col-md-4 mt-5">
+        <button
+          type="submit"
+          class="btn-govco outline-secundary-btn-govco icon-btn-govco"
+          [disabled]="!myForm.valid"
+        >
+          <span class="govco-svg govco-check" aria-hidden="true"></span>
+          <span>Validar</span>
+        </button>
+      </div>
+      <div class="col-md-4 mt-4 text-end">
+        <a routerLink="/" class="btn btn-link">Cancelar</a>
+      </div>
+      <div *ngIf="myForm.valid" class="mt-2">
+        <p class="text-success">
+          Formulario Completo <span class="govco-svg govco-thumbs-up"></span>
+        </p>
+      </div>
+      <div *ngIf="!myForm.valid" class="mt-2">
+        <p class="text-danger">
+          Faltan campos por validar
+          <span class="govco-svg govco-thumbs-down"></span>
+        </p>
+      </div>
+    </div>
+    <!-- <div class="row mt-4">
+    {{myForm.value |  json}}
+  </div> -->
+  </form>
+</div>
+<!-- laoder -->
+<div class="mt-8" *ngIf="isLoading">
+  <loader-gov></loader-gov>
+</div>
+
+<div
+  class="row animate__animated animate__fadeIn animate__slow"
+  *ngIf="!isLoading && visita.length > 0"
+>
+  <div class="container mt-4">
+    <div class="row mt-5">
+      <linea-avance [step]="step"></linea-avance>
+      <div class="mx-5 mt-3">
+        <h3>Seguimiento de visita {{ visita[0].radicado }}</h3>
+        <h5>
+          Fecha de solicitud:
+          <span class="badge bg-info text-dark">{{
+            visita[0].fecha_solicitud
+          }}</span>
+        </h5>
+        <h5>
+          Estado de la visita:
+          <span class="badge bg-success" *ngIf="visita[0].status"
+            >En Proceso</span
+          >
+          <span class="badge bg-danger" *ngIf="!visita[0].status"
+            >Atendida</span
+          >
+        </h5>
+        <br />
+        <h6 class="bg-gov-titulo">Información Visita</h6>
+        <hr />
+        <div class="row">
+          <div class="col-md-3">
+            <p><b>Nit</b> {{ visita[0].establecimiento?.nit }}</p>
+          </div>
+          <div class="col-md-3">
+            <p>
+              <b>Razón Social - Nombre</b>
+              {{ visita[0].establecimiento?.razon_social }} |
+              {{ visita[0].establecimiento?.nombre_comercial }}
+            </p>
+          </div>
+          <div class="col-md-6">
+            <p>
+              <b>Direccion</b> {{ visita[0].establecimiento?.direccion }}
+              {{ visita[0].establecimiento?.complemento_direccion }},
+              <b>barrio</b> {{ visita[0].establecimiento?.barrio }}
+              <b>comuna</b> {{ visita[0].establecimiento?.comuna }}
+            </p>
+          </div>
+          <div class="col-md-4">
+            <p>
+              <b>Técnico de saneamiento asignado:</b> &nbsp;&nbsp;
+              <span
+                class="badge bg-warning text-dark"
+                *ngIf="!visita[0].tecnico_id"
+                >Sin Asignar</span
+              >
+              <span *ngIf="visita[0].tecnico_id"
+                >{{ visita[0].tecnico?.nombres }}
+                {{ visita[0].tecnico?.apellidos }}</span
+              >
+            </p>
+          </div>
+          <div class="col-md-4">
+            <p>
+              <b>Concepto de la visita:</b> &nbsp;&nbsp;
+              <span
+                class="badge bg-warning text-dark"
+                *ngIf="!visita[0].concepto"
+                >Sin Definir</span
+              >
+              <span *ngIf="visita[0].concepto">{{ visita[0].concepto }}</span>
+            </p>
+          </div>
+          <!-- <div class="col-md-4">
+            <p><b>Concepto:</b> &nbsp;&nbsp; <span class="badge bg-warning text-dark" *ngIf="!visita[0].concepto">Sin Definir</span>
+              <span *ngIf="visita[0].concepto">{{visita[0].concepto}}</span>
+            </p>
+          </div> -->
+
+        </div>
+        <div class="row mt-3">
+          <h6 class="bg-gov-titulo">Documentos de generados de la visita</h6>
+            <hr />
+            <div class="col-md-6">
+              <p>
+                <b>Acta de visita:</b> &nbsp;&nbsp;
+                <span
+                  class="badge bg-warning text-dark"
+                  *ngIf="!visita[0].ruta_acta"
+                  >No Disponible</span
+                >
+                <a *ngIf="visita[0].ruta_acta" [attr.href]="urlDocuments + visita[0].ruta_acta"
+                target="_blank"
+                rel="noopener noreferrer">Descargue aquí</a>
+              </p>
+            </div>
+            <div class="col-md-6">
+              <p>
+                <b>Concepto Sanitario:</b> &nbsp;&nbsp;
+                <span
+                  class="badge bg-warning text-dark"
+                  *ngIf="!visita[0].ruta_concepto"
+                  >No Disponible</span
+                >
+                <a *ngIf="visita[0].ruta_concepto" [attr.href]="urlDocuments + visita[0].ruta_concepto"
+                target="_blank"
+                rel="noopener noreferrer">Descargue aquí</a>
+              </p>
+            </div>
+
+        </div>
+        <div class="row mt-4">
+          <div class="col-md-12">
+            <h6 class="bg-gov-titulo">Trazabilidad de la visita</h6>
+            <hr />
+            <table
+              class="table table-striped table-bordered"
+              *ngIf="visita[0].observaciones"
+            >
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Acción Realizada</th>
+                  <th>Novedad de solicitud</th>
+                  <th>Fecha</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Recorremos el array de observaciones con *ngFor -->
+                <tr
+                  *ngFor="
+                    let observacion of visita[0].observaciones;
+                    let i = index
+                  "
+                >
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ observacion.accion_realizada }}</td>
+                  <td>
+                    <span class="badge bg-primary">{{
+                      observacion.estado_parcial
+                    }}</span>
+                  </td>
+
+                  <td>{{ observacion.created_at | date : "short" }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row">
+         <div class="col-md-6">
+          <a routerLink="/" class="btn btn-link">Salir</a>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

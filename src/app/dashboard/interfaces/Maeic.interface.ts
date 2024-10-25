@@ -22,7 +22,7 @@ export interface DataValidate{
   message?: string;
   success: boolean;
   errors? : string[];
-  data?: ResponseSucesss
+  data?: ResponseSucesss|null
 
 }
 export interface ResponseSucesss{
@@ -34,6 +34,7 @@ export interface ResponseSucesss{
   direccion? : string;
   complemento_direccion? : string;
   mensaje?: string
+  radicado?: string
 
 
 }
