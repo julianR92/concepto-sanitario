@@ -189,6 +189,7 @@ export class VisitaComponent implements OnInit {
           .pipe(
             delay(2500),
             catchError((error: HttpErrorResponse) => {
+              this.isLoading = false;
               return of({ success: false, errors: [] } as DataValidate);
             })
           )
