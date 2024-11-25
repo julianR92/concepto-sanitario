@@ -81,7 +81,7 @@ export class VisitaComponent implements OnInit {
     barrio: ['', [Validators.required]],
     complemento_direccion: ['', []],
     file_representacion: [null, [Validators.required]],
-    file_uso: [null, [Validators.required]],
+    file_uso: [null, []],
     recaptcha: ['', Validators.required],
     inscripcion: ['', Validators.required],
     comuna: ['', Validators.required],

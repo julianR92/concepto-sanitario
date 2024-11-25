@@ -143,7 +143,17 @@
                 *ngIf="!visita[0].concepto"
                 >Sin Definir</span
               >
-              <span *ngIf="visita[0].concepto">{{ visita[0].concepto }}</span>
+              <span *ngIf="visita[0].concepto"
+              [ngClass]="{
+                'badge': true,
+                'bg-success': visita[0].concepto === 'FAVORABLE',
+                'bg-danger': visita[0].concepto === 'DESFAVORABLE',
+                'bg-warning': visita[0].concepto === 'FAVORABLE CON REQUERIMIENTOS' || visita[0].concepto === 'PENDIENTE',
+                'bg-primary': visita[0].concepto === 'NO APLICA',
+                'text-white': true
+              }">
+          {{ visita[0].concepto }}
+        </span>
             </p>
           </div>
           <!-- <div class="col-md-4">
@@ -171,7 +181,7 @@
             </div>
             <div class="col-md-6">
               <p>
-                <b>Concepto Sanitario:</b> &nbsp;&nbsp;
+                <b>Anexos:</b> &nbsp;&nbsp;
                 <span
                   class="badge bg-warning text-dark"
                   *ngIf="!visita[0].ruta_concepto"
@@ -213,7 +223,7 @@
                   <td>{{ observacion.accion_realizada }}</td>
                   <td>
                     <span class="badge bg-primary">{{
-                      observacion.estado_parcial
+                      observacion.estado_parcial === 'NO REALIZADA' ? 'NO EFECTIVA' : observacion.estado_parcial
                     }}</span>
                   </td>
 

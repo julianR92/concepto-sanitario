@@ -1,99 +1,345 @@
 <general-miga [items]="breadcrumbItems"></general-miga>
-<titulo-tramite [title]="titulo" [subtitle]="subitulo" class="mt-2"></titulo-tramite>
+<titulo-tramite
+  [title]="titulo"
+  [subtitle]="subitulo"
+  class="mt-2"
+></titulo-tramite>
 
-<h4 class="text-center mt-4"><img src="./img/numero-2.png" alt="" width="3%">&nbsp;&nbsp;&nbsp;Realizo mi Auto Evaluación</h4><br><br>
+<h4 class="text-center mt-4">
+  <img src="./img/numero-2.png" alt="" width="3%" />&nbsp;&nbsp;&nbsp;Realizo mi
+  Auto Evaluación
+</h4>
+<br /><br />
 
-<h5 class="text-center mt-0"><b>NIT: </b>  <span class="text-success">{{establecimiento?.nit}}</span> | <b>Inscripcion: </b><span class="text-success">{{establecimiento?.inscripcion}}</span></h5>
-<h5 class="text-center"><b>Razon Social: </b>  <span class="text-success"> {{establecimiento?.razon_social}}</span></h5>
-<h5 class="text-center"><b>Direccion: </b>  <span class="text-success"> {{establecimiento?.direccion}}</span></h5>
+<h5 class="text-center mt-0">
+  <b>NIT: </b> <span class="text-success">{{ establecimiento?.nit }}</span> |
+  <b>Inscripcion: </b
+  ><span class="text-success">{{ establecimiento?.inscripcion }}</span>
+</h5>
+<h5 class="text-center">
+  <b>Razon Social: </b>
+  <span class="text-success"> {{ establecimiento?.razon_social }}</span>
+</h5>
+<h5 class="text-center">
+  <b>Direccion: </b>
+  <span class="text-success"> {{ establecimiento?.direccion }}</span>
+</h5>
 <div class="row mt-5" *ngIf="!isLoading">
-
-  <div class="col-md-7 mt-5">
-    <ol>
-      <li> <p class="mb-3">Acta general de inspección, vigilancia y control</p><br>
-         <ngx-doc-viewer
-        [url]="docUrl"
-        viewer="google"
-        style="width:100%; height:600px;"
-        disableContent="popout"
+  <div class="col-md-6 mt-5">
+    <h4>¿ Que condiciones sanitarias se deben cumplir ?</h4>
+    <hr />
+    <ul class="list-group">
+      <li class="text-justify list-group-item">
+        Pisos construidos en material sanitario no poroso ni absorbente, de
+        fácil lavado y desinfección.
+      </li>
+      <li class="text-justify list-group-item">
+        Paredes continuas y de tonos claros, con materiales resistentes🧱,
+        impermeables y no porosos.
+      </li>
+      <li class="text-justify list-group-item">
+        Las redes e instalaciones eléctricas 🔌 deben estar diseñadas,
+        instaladas y mantenidas para prevenir incendios y evitar el contacto con
+        elementos sometidos a tensión, conforme al
+        <a
+          href="https://www.minsalud.gov.co/Normatividad_Nuevo/LEY%200009%20DE%201979.pdf"
+          target="_blank"
+          rel="noreferrer noopener"
+          >Art. 117 de la Ley 9 de 1979</a
         >
-      </ngx-doc-viewer></li>
-    </ol>
+      </li>
+      <li class="text-justify list-group-item">
+        Las escaleras 🪜, rampas, son seguras, cuentan con pasamamanos y estan
+        revestidas de material antideslizantes,franja foto lumínica y pasamanos
+        <a
+          href="https://www.minsalud.gov.co/Normatividad_Nuevo/Resoluci%C3%B3n%2014861%20de%201985.pdf"
+          target="_blank"
+          rel="noreferrer noopener"
+          >(Art 47 y 48 Resolucion 14861 de 1985)</a
+        >
+      </li>
+      <li class="text-justify list-group-item">
+        La ventilación es adecuada para el uso.<a
+          href="https://www.minsalud.gov.co/Normatividad_Nuevo/LEY%200009%20DE%201979.pdf"
+          target="_blank"
+          rel="noreferrer noopener"
+          >(Art 197 Ley 9 de 1979)</a
+        >
+      </li>
+      <li class="text-justify list-group-item">
+        La iluminación 💡 es suficiente y adecuada en cantidad para su uso.
+        <a
+          href="https://www.minsalud.gov.co/Normatividad_Nuevo/LEY%200009%20DE%201979.pdf"
+          target="_blank"
+          rel="noreferrer noopener"
+          >(Art 196 Ley 9 de 1979).</a
+        >
+      </li>
+      <li class="text-justify list-group-item">
+        El establecimiento debe tener servicios sanitarios funcionales,
+        separados por sexo 🚻, equipados para la higiene personal y en cantidad
+        suficiente para trabajadores y visitantes 🚽 (inodoros y lavamanos).
+        <a
+          href="https://www.minsalud.gov.co/Normatividad_Nuevo/Resoluci%C3%B3n%2014861%20de%201985.pdf"
+          target="_blank"
+          rel="noreferrer noopener"
+          >(Art. 50 Resolución 14861 de 1985)</a
+        >
+      </li>
+      <li class="text-justify list-group-item">
+        El establecimiento mantiene las condiciones de en orden, aseo y cuenta
+        con un programa de limpieza 🫧 y desinfección para las instalaciones y
+        equipos documentado e implementado (procedimientos, planillas y
+        registros).
+        <a
+          href="https://www.minsalud.gov.co/Normatividad_Nuevo/LEY%200009%20DE%201979.pdf"
+          target="_blank"
+          rel="noreferrer noopener"
+          >(Art 207 ley 9 de 1979)</a
+        >
+      </li>
+      <li class="text-justify list-group-item">
+        Los elementos y productos químicos 🧴 utilizados para la limpieza y
+        desinfección se encuentran debidamente rotulados y almacenados.
+      </li>
+      <li class="text-justify list-group-item">
+        Cuenta con programa para el manejo y gestión integral de sus residuos
+        sólidos documentado e implementado.
+      </li>
+      <li class="text-justify list-group-item">
+        Recipientes con tapa para almacenamiento de residuos en suficiente
+        cantidad.
+      </li>
+      <li class="text-justify list-group-item">
+        Suministro permanente de agua potable 🚰 y conexión a alcantarillado
+      </li>
+      <li class="text-justify list-group-item">
+        Existe un programa de manejo integral de plagas 🪳 documentado e
+        implementado.<a
+          href="https://www.minsalud.gov.co/Normatividad_Nuevo/LEY%200009%20DE%201979.pdf"
+          target="_blank"
+          rel="noreferrer noopener"
+          >(Art 201 y Art 593 Ley 09 de 1979)</a
+        >
+      </li>
+      <li class="text-justify list-group-item">
+        Las áreas y secciones deben estar claramente señalizadas para acceso,
+        circulación, servicios, seguridad y salidas de emergencia.
+        <a
+          href="https://www.minsalud.gov.co/Normatividad_Nuevo/LEY%200009%20DE%201979.pdf"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          (Art. 206 Ley 9 de 1979)
+        </a>
+        <a
+          href="https://www.minsalud.gov.co/Normatividad_Nuevo/Resoluci%C3%B3n%2014861%20de%201985.pdf"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          (Art. 52 Resolución 14861 de 1985)
+        </a>
+      </li>
+      <li class="text-justify list-group-item">
+        El establecimiento cuenta con extintores 🧯 o gabinetes contra incendios
+        cargados y debidamente señalizados en perfecto estado de funcionamiento.
+        <a
+          href="https://www.minsalud.gov.co/Normatividad_Nuevo/Resoluci%C3%B3n%2014861%20de%201985.pdf"
+          target="_blank"
+          rel="noreferrer noopener"
+          >(Art 52 Resolución 14861 de 1985)</a
+        >
+      </li>
+      <li class="text-justify list-group-item">
+        Existe botiquín de primeros auxilios 🆘<a
+          href="https://www.minsalud.gov.co/Normatividad_Nuevo/LEY%200009%20DE%201979.pdf"
+          target="_blank"
+          rel="noreferrer noopener"
+          >(Art 127 Ley 9 de 1979)</a
+        >
+      </li>
+      <li class="text-justify list-group-item">
+        <span style="font-size: large; font-weight: bold"
+          >Y las demás normas adicionales que le apliquen a su actividad.</span
+        >
+      </li>
+    </ul>
+  </div>
+  <br />
+  <div class="col-md-6 mt-5">
+    <h4>Normativa que debes conocer y considerar:</h4>
+    <hr />
+    <div class="row">
+      <a
+        class="tarjeta-govco horizontal-tarjeta-govco reverse-tarjeta-govco efecto-hover"
+        style="height: 7rem"
+        target="_blank"
+        rel="noreferrer noopener"
+        href="https://www.minsalud.gov.co/Normatividad_Nuevo/LEY%200009%20DE%201979.pdf"
+        title="Ley 9 de 1979 - CODIGO SANITARIO"
+      >
+        <div class="col-md-8">
+          <div class="body-tarjeta-govco">
+            <h5>Ley 9 de 1979 - CODIGO SANITARIO</h5>
+          </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center align-items-center">
+          <img class="" src="./img/expediente.png" alt="expediente" />
+        </div>
+      </a>
+    </div>
+    <div class="row pt-2">
+      <a
+        class="tarjeta-govco horizontal-tarjeta-govco reverse-tarjeta-govco efecto-hover"
+        style="height: 7rem"
+        target="_blank"
+        rel="noreferrer noopener"
+        href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=30007"
+        title="Decreto 1575 de 2007  AGUA POTABLE"
+      >
+        <div class="col-md-8">
+          <div class="body-tarjeta-govco">
+            <h5>Decreto 1575 de 2007 AGUA POTABLE</h5>
+          </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center align-items-center">
+          <img class="" src="./img/expediente.png" alt="expediente" />
+        </div>
+      </a>
+    </div>
+    <div class="row pt-2">
+      <a
+        class="tarjeta-govco horizontal-tarjeta-govco reverse-tarjeta-govco efecto-hover"
+        style="height: 7rem"
+        target="_blank"
+        rel="noreferrer noopener"
+        href="https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/PS/documento-balance-1618-2013-240517.pdf"
+        title="Ley estatutaria 1618 de 2013"
+      >
+        <div class="col-md-8">
+          <div class="body-tarjeta-govco">
+            <h5>Ley estatutaria 1618 de 2013</h5>
+          </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center align-items-center">
+          <img class="" src="./img/expediente.png" alt="expediente" />
+        </div>
+      </a>
+    </div>
 
+    <div class="row pt-2">
+      <a
+        class="tarjeta-govco horizontal-tarjeta-govco reverse-tarjeta-govco efecto-hover"
+        style="height: 7rem"
+        target="_blank"
+        rel="noreferrer noopener"
+        href="https://dea.bucaramanga.gov.co/aFrame/_anexos/Resolucion%20011%20de%202022.pdf"
+        title="Resolucion 011 de 2022 - DEA"
+      >
+        <div class="col-md-8">
+          <div class="body-tarjeta-govco">
+            <h5>Resolucion 011 de 2022 - DEA</h5>
+          </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center align-items-center">
+          <img class="" src="./img/expediente.png" alt="expediente" />
+        </div>
+      </a>
+    </div>
+    <div class="row pt-2">
+      <a
+        class="tarjeta-govco horizontal-tarjeta-govco reverse-tarjeta-govco efecto-hover"
+        style="height: 7rem"
+        target="_blank"
+        rel="noreferrer noopener"
+        href="https://www.suin-juriscol.gov.co/clp/contenidos.dll/Resolucion/30051428?fn=document-frame.htm$f=templates$3.0"
+        title="Resolución 591 de 2024 - PGIRASA"
+      >
+        <div class="col-md-8">
+          <div class="body-tarjeta-govco">
+            <h5>Resolución 591 de 2024 - PGIRASA</h5>
+          </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center align-items-center">
+          <img class="" src="./img/expediente.png" alt="expediente" />
+        </div>
+      </a>
+    </div>
+
+    <div class="row pt-2">
+      <a
+        class="tarjeta-govco horizontal-tarjeta-govco reverse-tarjeta-govco efecto-hover"
+        style="height: 7rem"
+        target="_blank"
+        rel="noreferrer noopener"
+        href="https://www.minambiente.gov.co/documento-entidad/resolucion-2184-de-2019/"
+        title="Resolucion 2184 de 2019 – CODIGO DE COLORES SEPARACION DE RESIDUOS"
+      >
+        <div class="col-md-8">
+          <div class="body-tarjeta-govco">
+            <h5>
+              Resolucion 2184 de 2019 CODIGO DE COLORES SEPARACION DE RESIDUOS
+            </h5>
+          </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center align-items-center">
+          <img class="" src="./img/expediente.png" alt="expediente" />
+        </div>
+      </a>
+    </div>
+    <div class="row pt-2">
+      <a
+        class="tarjeta-govco horizontal-tarjeta-govco reverse-tarjeta-govco efecto-hover"
+        style="height: 7rem"
+        target="_blank"
+        rel="noreferrer noopener"
+        href="https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/DE/DIJ/resolucion-2674-de-2013.pdf"
+        title="Resolución 2674 de 2013. ALIMENTOS "
+      >
+        <div class="col-md-8">
+          <div class="body-tarjeta-govco">
+            <h5>Resolución 2674 de 2013. ALIMENTOS</h5>
+          </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center align-items-center">
+          <img class="" src="./img/expediente.png" alt="expediente" />
+        </div>
+      </a>
+    </div>
+
+    <div class="row pt-3">
+      <h5>DEFINICIONES:</h5>
+      <hr />
+      <h6>¿ Que es el plan de saneamiento basico ?</h6>
+      <p class="text-justify">
+        El Plan de Saneamiento Básico consiste en realizar actividades
+        locativas, de limpieza y mantenimiento necesarias para garantizar un
+        ambiente libre de contaminación en función del bienestar de las
+        personas. Incluye programas de limpieza y desinfección, manejo de
+        desechos sólidos y control integrado de plagas.
+      </p>
+    </div>
 
   </div>
-  <br>
-  <div class="col-md-5 mt-5">
-     <h6>Revisa el documento cuidadosamente y selecciona <span class="govco-svg govco-check-square bg-gov"></span> las opciónes que has leído y comprendido.</h6>
-     <form action="" class="mt-4" [formGroup]="myForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
-         <ul class="list-group">
-          <li class="text-justify list-group-item">
+  <div class="col-md-12">
+    <form action="" class="mt-4" [formGroup]="myForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+      <p>Para continuar debes checkear y guardar la auto evaluación</p>
 
-            1. He comprendido y entendido los <b>criterios de evaluación </b> del acta de inspección, vigilancia y control<div class="checkbox-seleccion-govco">
+             <span style="font-size: large; font-weight: bold">🔹Confirmo que he leído los criterios de revisión en la visita de concepto sanitario.</span><div class="checkbox-seleccion-govco">
               <input id="opt3" type="checkbox"  name="criterios" formControlName="criterios" /></div>
 
               <span *ngIf="isValidField('criterios')" class="form-text text-danger">
                 {{ getFieldError("criterios") }}
               </span>
 
-          </li>
-          <li class="mt-3" class="text-justify list-group-item" >
 
-             2. He realizado la <b>revision documental </b> solicitada en el acta de inspección, vigilancia y control<div class="checkbox-seleccion-govco">
-              <input id="opt3" type="checkbox"  name="revision_documental" formControlName="revision_documental" /></div>
 
-              <span *ngIf="isValidField('revision_documental')" class="form-text text-danger">
-                {{ getFieldError("revision_documental") }}
-              </span>
-
-          </li>
-          <li class="mt-3" class="text-justify list-group-item" >
-
-             3. He verificado la <b>las condiciones locativas </b> de mi establecimiento<div class="checkbox-seleccion-govco">
-              <input id="opt3" type="checkbox"  name="condiciones_locativas" formControlName="condiciones_locativas" /></div>
-
-              <span *ngIf="isValidField('condiciones_locativas')" class="form-text text-danger">
-                {{ getFieldError("condiciones_locativas") }}
-              </span>
-
-          </li>
-          <li class="mt-3" class="text-justify list-group-item" >
-
-             4. He verificado la <b>las condiciones sanitarias </b> de mi establecimiento<div class="checkbox-seleccion-govco">
-              <input id="opt3" type="checkbox"  name="condiciones_sanitarias" formControlName="condiciones_sanitarias" /></div>
-
-              <span *ngIf="isValidField('condiciones_sanitarias')" class="form-text text-danger">
-                {{ getFieldError("condiciones_sanitarias") }}
-              </span>
-
-          </li>
-          <li class="mt-3" class="text-justify list-group-item" >
-
-              5. He verificado la <b>las condiciones de saneamiento </b> de mi establecimiento tales como el abastecimiento del agua, manejo y disposición de vertimentos, manejo de residuos solidos, manejo integrado de plagas<div class="checkbox-seleccion-govco">
-              <input id="opt3" type="checkbox"  name="condiciones_saneamiento" formControlName="condiciones_saneamiento" /></div>
-
-              <span *ngIf="isValidField('condiciones_saneamiento')" class="form-text text-danger">
-                {{ getFieldError("condiciones_saneamiento") }}
-              </span>
-
-          </li>
-          <li class="mt-3" class="text-justify list-group-item" >
-             6. He verificado la <b>las condiciones de gestion del riesgo </b> necesarios de mi establecimiento<div class="checkbox-seleccion-govco">
-              <input id="opt3" type="checkbox"  name="condiciones_gestion" formControlName="condiciones_gestion" /></div>
-              <span *ngIf="isValidField('condiciones_gestion')" class="form-text text-danger">
-                {{ getFieldError("condiciones_gestion") }}
-              </span>
-
-          </li>
-         </ul>
 
          <div class="col-md-6 mt-4">
-
           <re-captcha formControlName="recaptcha" siteKey="{{siteKey}}" class="mb-3"></re-captcha>
           <span *ngIf="isValidField('recaptcha')" class="form-text text-danger">
             {{ 'Validar captcha es requerido' }}
           </span>
-
           <button
           type="submit"
           class="btn-govco outline-secundary-btn-govco icon-btn-govco mt-3"
@@ -110,23 +356,19 @@
           <p class="text-danger"> Auto Evaluación Incompleta <span class="govco-svg govco-thumbs-down"></span></p>
         </div>
         </div>
-<!--
-          <div class="row mt-4">
-    {{myForm.value |  json}}
-  </div> -->
+
+          <!-- <div class="row mt-4">
+        {{myForm.value |  json}}
+        </div> -->
 
 
      </form>
-
   </div>
   <div class="col-md-12 mt-3">
     <a routerLink="/establecimientos" class="btn btn-link">Cancelar</a>
-   </div>
+  </div>
 </div>
 
 <div class="mt-8" *ngIf="isLoading">
   <loader-gov></loader-gov>
 </div>
-
-
-

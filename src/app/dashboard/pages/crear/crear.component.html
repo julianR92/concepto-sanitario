@@ -60,16 +60,30 @@
         </div>
     </div>
     <div class="col-md-6 mt-2">
-        <div class="entradas-de-texto-govco">
+      <div class="form-group">
+        <div class="form-group">
+
           <label for="matricula_mercantil">Actividad Economica*</label>
-          <select class="form-select" aria-label="Default select example" name="actividad_economica" formControlName="actividad_economica">
+          <!-- <select class="form-select" aria-label="Default select example" name="actividad_economica" formControlName="actividad_economica">
           <option value="">Seleccione...</option>
           <option *ngFor="let actividad of actividades" [value]="actividad.id">{{actividad.descripcion}}</option>
-         </select>
+         </select> -->
+       <p-dropdown
+        formControlName="actividad_economica"
+        [options]="actividades"
+         [style]="{'minWidth':'100%'}"
+        optionLabel="descripcion"
+        optionValue="id"
+        [showClear]="true"
+
+        filter="true"
+        placeholder="Seleccione ..." />
           <span *ngIf="isValidField('actividad_economica')" class="form-text text-danger">
             {{ getFieldError("actividad_economica") }}
           </span>
-        </div>
+      </div>
+      </div>
+
     </div>
     <div class="col-md-3 mt-2">
       <div class="entradas-de-texto-govco">
@@ -412,10 +426,19 @@
 <div class="col-md-4 mt-3 ">
   <div class="entradas-de-texto-govco">
     <label for="calle">Codigo CIIU</label>
-    <select class="form-select" aria-label="Default select example" name="id_ciuu" formControlName="id_ciuu">
+    <!-- <select class="form-select" aria-label="Default select example" name="id_ciuu" formControlName="id_ciuu">
     <option value="">Seleccione...</option>
     <option *ngFor="let codigo of ciiu" [value]="codigo?.IdCiiu">{{codigo?.Codigo }} | {{codigo?.CodDes}}</option>
-   </select>
+   </select> -->
+   <p-dropdown
+        formControlName="id_ciuu"
+        [options]="ciiu"
+         [style]="{'minWidth':'100%'}"
+        optionLabel="displayLabel"
+        optionValue="IdCiiu"
+        [showClear]="true"
+        filter="true"
+        placeholder="Seleccione ..." />
     <span *ngIf="isValidField('id_ciuu')" class="form-text text-danger">
       {{ getFieldError("id_ciuu") }}
     </span>

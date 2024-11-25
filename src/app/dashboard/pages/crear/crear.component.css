@@ -3,3 +3,26 @@ hr {
   height: 3px; /* Ajusta el grosor de la línea */
   background-color: #0943B5; /* Cambia el color de la línea (rojo en este caso) */
 }
+:host {
+::ng-deep .p-dropdown-items  {
+  padding-left: 0!important;
+  max-width: 100% !important; /* Ajusta el ancho máximo del panel desplegable */
+
+}
+::ng-deep .p-inputtext {
+  font-size: 0.85rem!important;
+}
+::ng-deep .p-component {
+  font-size: 0.85rem!important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+}
+::ng-deep .p-dropdown-items-wrapper {
+  max-width: 100% !important;
+  box-sizing: border-box;
+
+}
+
+
+}
+

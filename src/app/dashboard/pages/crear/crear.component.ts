@@ -104,6 +104,8 @@ export class CrearComponent implements OnInit {
       numero_predial: this.dataCec[0]?.MaePreNum.trim() || '',
 
     });
+    console.log(this.ciiu)
+
   }
   //getters
   get datos() {
@@ -171,6 +173,10 @@ export class CrearComponent implements OnInit {
           this.barrios = data.barrios;
           this.letras = data.letras;
           this.indicaciones = data.indicaciones;
+          this.ciiu = this.ciiu.map(item => ({
+            ...item,
+            displayLabel: `${item.Codigo}|${item.CodDes}`
+          }));
           return;
         }
       });
@@ -245,7 +251,7 @@ export class CrearComponent implements OnInit {
     ],
     direccion_maeic: ['', []],
     numero_predial: ['', []],
-    actividad_economica: ['', [Validators.required]],
+    actividad_economica: [null, [Validators.required]],
     telefono: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(7),Validators.pattern(this.vs.numberPattern)]],
     correo_electronico: ['', [Validators.required, Validators.pattern(this.vs.emailPattern)]],
     confirme_email: ['', [Validators.required, Validators.pattern(this.vs.emailPattern)]],

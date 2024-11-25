@@ -24,6 +24,8 @@ import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 import { RecomendacionesComponent } from './components/recomendaciones/recomendaciones.component';
 import { FinalizaVisitaComponent } from './pages/finaliza-visita/finaliza-visita.component';
 import { InformacionVisitaComponent } from './pages/informacion-visita/informacion-visita.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+
 
 
 
@@ -57,7 +59,9 @@ import { InformacionVisitaComponent } from './pages/informacion-visita/informaci
     RecaptchaFormsModule,
     RouterModule,
     NgxDocViewerModule,
-    PrimeNgModule
+    PrimeNgModule,
+    NgSelectModule
+
 
 
   ],

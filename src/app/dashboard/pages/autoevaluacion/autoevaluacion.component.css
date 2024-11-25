@@ -26,4 +26,31 @@
   margin-bottom: 0.938rem;
 }
 
+ul {
+  list-style: none;
+  margin-left: 0px!important;
+  padding-left: 0px!important;
+}
+
+ul li:before {
+  content: '➡️';
+}
+
+hr {
+  border: none; /* Eliminar el borde predeterminado */
+  height: 10px; /* Altura de la línea */
+  width: 75%;
+  background: linear-gradient(to right, #79b859, #5eb856, #3e992b, #2e6029, #1b3d17);/* Degradado más contrastante */
+  border-radius: 8px; /* Bordes redondeados */
+  margin: 20px 0; /* Espaciado superior e inferior */
+}
+
+.efecto-hover {
+  transition: transform 0.3s ease; /* Suaviza el efecto */
+}
+
+.efecto-hover:hover {
+  transform: scale(1.05); /* Escala ligeramente hacia afuera */
+}
+
 

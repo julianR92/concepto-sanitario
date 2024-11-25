@@ -87,11 +87,6 @@ export class AutoevaluacionComponent implements  OnInit {
     id: ['', Validators.required],
     nit: ['', [Validators.required]],
     criterios: ['',    [Validators.requiredTrue]],
-    revision_documental: ['',[Validators.requiredTrue]],
-    condiciones_locativas: ['',[Validators.requiredTrue]],
-    condiciones_sanitarias: ['',[Validators.requiredTrue]],
-    condiciones_saneamiento: ['',[Validators.requiredTrue]],
-    condiciones_gestion: ['',[Validators.required]],
     recaptcha: ['', Validators.required],
     inscripcion : ['', Validators.required]
   });

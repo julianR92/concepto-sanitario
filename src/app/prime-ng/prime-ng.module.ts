@@ -7,6 +7,8 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { FileUploadModule } from 'primeng/fileupload';
+import { DropdownModule } from 'primeng/dropdown';
+
 
 
 
@@ -30,6 +32,7 @@ import { FileUploadModule } from 'primeng/fileupload';
     AvatarGroupModule,
     AvatarModule,
     FileUploadModule,
+    DropdownModule
 
 
 
