@@ -13,7 +13,7 @@ export class PrincipalComponent implements OnInit {
     { label: 'Establecimientos', url:'', ngLink:false},
 
   ];
-  public titulo:string = 'TRAMITE DE CONCEPTO SANITARIO'
+  public titulo:string = 'TRÁMITE DE CONCEPTO SANITARIO'
   public subitulo :string = 'Alcaldía de Bucaramanga'
 
   ngOnInit(): void {

@@ -14,7 +14,7 @@ export class PrincipalComponent implements OnInit {
 
   ];
 
-  public titulo:string = 'TRAMITE DE CONCEPTO SANITARIO'
+  public titulo:string = 'TRÁMITE DE CONCEPTO SANITARIO'
   public subitulo :string = 'Alcaldía de Bucaramanga'
 
   ngOnInit(): void {

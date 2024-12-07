@@ -29,7 +29,7 @@ export class ValidarComponent  implements OnInit{
     { label: 'Concepto Sanitario', url: '/', ngLink: true },
     { label: 'Validar', url: '', ngLink: false },
   ];
-  public titulo: string = 'TRAMITE DE CONCEPTO SANITARIO';
+  public titulo: string = 'TRÁMITE DE CONCEPTO SANITARIO';
   public subitulo: string = 'Alcaldía de Bucaramanga';
 
   public myForm: FormGroup = this.fb.group({

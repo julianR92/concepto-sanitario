@@ -34,7 +34,7 @@ export class InformacionVisitaComponent implements OnDestroy  {
     { label: 'Establecimientos', url: '/establecimientos', ngLink: true },
     { label: 'Estado visita', url: '', ngLink: false },
   ];
-  public titulo: string = 'TRAMITE DE CONCEPTO SANITARIO';
+  public titulo: string = 'TRÁMITE DE CONCEPTO SANITARIO';
   public subitulo: string = 'Estado de la visita';
 
   public isLoading = false;

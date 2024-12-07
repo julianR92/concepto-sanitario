@@ -26,7 +26,7 @@ export class ActualizarComponent {
     { label: 'Actualizar', url:'', ngLink:false},
 
   ];
-  public titulo:string = 'TRAMITE DE CONCEPTO SANITARIO'
+  public titulo:string = 'TRÁMITE DE CONCEPTO SANITARIO'
   public subitulo :string = 'Actualiza'
 
   public isLoading = false;

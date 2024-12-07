@@ -36,7 +36,7 @@ export class AutoevaluacionComponent implements  OnInit {
     { label: 'Auto Evaluacion', url:'', ngLink:false},
 
   ];
-  public titulo:string = 'TRAMITE DE CONCEPTO SANITARIO'
+  public titulo:string = 'TRÁMITE DE CONCEPTO SANITARIO'
   public subitulo :string = 'Auto-Evaluación'
 
   constructor( private router: Router, private maeic: MaeicService,private toastr: ToastrService,  private fb: FormBuilder,

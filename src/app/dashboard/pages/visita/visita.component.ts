@@ -32,7 +32,7 @@ export class VisitaComponent implements OnInit {
     { label: 'Establecimientos', url: '/establecimientos', ngLink: true },
     { label: 'Solicitar Visita', url: '', ngLink: false },
   ];
-  public titulo: string = 'TRAMITE DE CONCEPTO SANITARIO';
+  public titulo: string = 'TRÁMITE DE CONCEPTO SANITARIO';
   public subitulo: string = 'Solicitar Visita';
 
   constructor(

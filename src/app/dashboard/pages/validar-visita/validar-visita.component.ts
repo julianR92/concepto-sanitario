@@ -29,7 +29,7 @@ export class ValidarVisitaComponent {
     { label: 'Establecimientos', url: '/establecimientos', ngLink: true },
     { label: 'Validar Visita', url: '', ngLink: false },
   ];
-  public titulo: string = 'TRAMITE DE CONCEPTO SANITARIO';
+  public titulo: string = 'TRÁMITE DE CONCEPTO SANITARIO';
   public subitulo: string = 'Solicitar Visita';
 
   public isLoading = false;

@@ -25,7 +25,7 @@ export class ValidarAutoevaluacionComponent {
     { label: 'Validar Auto-Evaluacion', url:'', ngLink:false},
 
   ];
-  public titulo:string = 'TRAMITE DE CONCEPTO SANITARIO'
+  public titulo:string = 'TRÁMITE DE CONCEPTO SANITARIO'
   public subitulo :string = 'Auto-Evaluación'
 
   public isLoading = false;
