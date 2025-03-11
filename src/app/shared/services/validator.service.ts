@@ -12,7 +12,7 @@ export class ValidatorsService {
   public emailPattern: string = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
   public numberPattern: string = '^[0-9]+$';
   public numberStringPattern: string = '^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑs ]+$';
-  public razonSocialPattern: string = '^[a-zA-Z0-9\-.áéíóúÁÉÍÓÚñÑs ]+$';
+  public razonSocialPattern: string = '^[a-zA-Z0-9&\-.áéíóúÁÉÍÓÚñÑs ]+$';
   public letterPAttern = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$";
   public addressPattern = "^[a-zA-Z0-9#,\-.áéíóúÁÉÍÓÚñÑ ]*$";
   public mulitplePattern = "^[a-zA-Z0-9#,\-.:;áéíóúÁÉÍÓÚñÑ ]*$";
