@@ -299,7 +299,7 @@ export class CrearComponent implements OnInit {
     departamento_notificacion: ['', []],
     municipio_notificacion: ['', []],
     autoriza_notificaciones: ['1', [Validators.required]],
-    id_ciuu : ['', []],
+    id_ciuu : ['', [Validators.required,]],
     numero_trabajadores : ['', [Validators.maxLength(5), Validators.pattern(this.vs.numberPattern)]],
     horario : ['', [Validators.maxLength(150), Validators.pattern(this.vs.mulitplePattern)]],
     observaciones : ['', [Validators.maxLength(150), Validators.pattern(this.vs.mulitplePattern)]],
