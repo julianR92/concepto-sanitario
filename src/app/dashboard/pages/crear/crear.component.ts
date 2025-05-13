@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BreadcrumbItem } from '../../../shared/interfaces/miga.interface';
 import { DataValidate, Maeic } from '../../interfaces/Maeic.interface';
@@ -49,6 +49,9 @@ export class CrearComponent implements OnInit {
   public clientIp: string | undefined;
   public isLoading: boolean = false;
   public secretKey:string = environments.SECRET_KEY
+  public direccionManual: boolean = false;
+  @ViewChild('direccionInput') direccionInput!: ElementRef;
+
 
 
 
@@ -186,7 +189,10 @@ export class CrearComponent implements OnInit {
       distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr))
 
     ).subscribe(() => {
-      this.concatenarDireccion();
+      if (!this.direccionManual) {
+          this.concatenarDireccion();
+          }
+
     });
   }
   onChangedDepartamento(departamento_id:string): void {
@@ -286,12 +292,12 @@ export class CrearComponent implements OnInit {
     corregimiento: ['', []],
     municipio: ['Bucaramanga', [Validators.required]],
     departamento: ['Santander', [Validators.required]],
-    nom_propietario: ['', [Validators.required, Validators.maxLength(20), Validators.pattern(this.vs.letterPAttern)]],
-    ape_propietario: ['', [Validators.required, Validators.maxLength(20), Validators.pattern(this.vs.letterPAttern)]],
+    nom_propietario: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(this.vs.letterPAttern)]],
+    ape_propietario: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(this.vs.letterPAttern)]],
     tipo_documento_pro: ['', [Validators.required]],
     documento_propietario: ['', [Validators.required, Validators.maxLength(12), Validators.pattern(this.vs.numberPattern)]],
-    nom_representante: ['', [Validators.required, Validators.maxLength(20), Validators.pattern(this.vs.letterPAttern)]],
-    ape_representante: ['', [Validators.required, Validators.maxLength(20), Validators.pattern(this.vs.letterPAttern)]],
+    nom_representante: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(this.vs.letterPAttern)]],
+    ape_representante: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(this.vs.letterPAttern)]],
     tipo_documento_repre: ['', [Validators.required]],
     documento_repre: ['', [Validators.required, Validators.maxLength(12), Validators.pattern(this.vs.numberPattern)]],
     correo_representante: ['', [Validators.pattern(this.vs.emailPattern)]],
@@ -307,6 +313,7 @@ export class CrearComponent implements OnInit {
     acepto_terminos : ['', [Validators.required]],
     confirmo_mayor_edad : ['', [Validators.required]],
     recaptcha: ['', Validators.required],
+    direccion_manual : [false, []],
 
 
   }, {
@@ -405,6 +412,73 @@ export class CrearComponent implements OnInit {
     }
     );
   }
+
+  toggleDireccionManual() {
+  this.direccionManual = !this.direccionManual;
+
+  const direccionControl = this.myForm.get('direccion');
+  const calle = this.myForm.get('calle');
+  const numero_nombre = this.myForm.get('numero_nombre');
+  const numero_uno = this.myForm.get('numero_uno');
+  // ...otros controles que necesites
+
+  if (this.direccionManual) {
+    // Permitir edición manual y quitar el required de todos los campos relacionados
+    if (calle) {
+      calle.clearValidators();
+      calle.setValidators([]);
+      calle.updateValueAndValidity();
+      calle.enable();
+      calle.setValue('');
+    }
+    if (numero_nombre) {
+      numero_nombre.clearValidators();
+      numero_nombre.setValidators([]);
+      numero_nombre.updateValueAndValidity();
+      numero_nombre.enable();
+      numero_nombre.setValue('');
+    }
+    if (numero_uno) {
+      numero_uno.clearValidators();
+      numero_uno.setValidators([]);
+      numero_uno.updateValueAndValidity();
+      numero_uno.enable();
+      numero_uno.setValue('');
+    }
+    if(direccionControl){
+      direccionControl.enable();
+      direccionControl.setValue('');
+    }
+
+    setTimeout(() => {
+      this.direccionInput?.nativeElement.focus();
+    }, 0);
+
+  } else {
+    // Volver a modo parametrizado y poner required en todos los campos
+    if (calle) {
+      calle.setValidators([Validators.required]);
+       calle.updateValueAndValidity();
+    }
+    if (numero_nombre) {
+      numero_nombre.setValidators([Validators.required]);
+      numero_nombre.updateValueAndValidity();
+    }
+    if (numero_uno) {
+      numero_uno.setValidators([Validators.required]);
+      numero_uno.updateValueAndValidity();
+    }
+    if (direccionControl) {
+      direccionControl.setValidators([Validators.required]);
+      direccionControl.updateValueAndValidity();
+
+    }
+     this.concatenarDireccion();
+  }
+}
+
+
+
 
 
 
