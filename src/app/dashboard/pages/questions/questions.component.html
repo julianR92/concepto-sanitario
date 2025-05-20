@@ -1,0 +1,42 @@
+<general-miga [items]="breadcrumbItems"></general-miga>
+<titulo-tramite [title]="titulo" [subtitle]="subitulo" class="mt-2"></titulo-tramite>
+<h6 class="text-center mt-4">{{empresa[0].razon_social}} | {{empresa[0].nit}}     </h6>
+
+
+<app-stepper [preguntas]="preguntas" (respuestas)="respuestas($event)" *ngIf="!isLoading && dataValidate.length == 0" ></app-stepper>
+
+<div class="d-flex justify-content-center align-items-center mt-6 row animate__animated animate__fadeIn animate__slow" *ngIf="!isLoading && dataValidate.length > 0">
+  <div class="toast container-toast-govco show"  [ngClass]="isSuccess ? 'success' : 'error'" id="fixedtoast" data-autohide="false" role="alert"
+  aria-live="assertive" aria-atomic="true" style="max-width: 70% !important">
+   <div [ngClass]="isSuccess ? 'toast-header toast-header-success-govco' : 'toast-header toast-header-error-govco'">
+    <span
+      class="govco-svg fs-mr"
+      [ngClass]="isSuccess ? 'govco-check-circle' : 'govco-cross-circle'"
+      aria-label="info"
+    ></span>
+    <strong class="me-auto toast-title-govco">
+      {{ isSuccess ? 'Validación Exitosa' : 'Validación Fallida' }}
+    </strong>
+    <small class="toast-small-govco" [ngClass]="isSuccess ? 'success' : 'error'">Hace x segundos</small>
+  </div>
+  <div class="toast-body toast-body-govco">
+
+      <p class="text-center" style="font-weight: bolder;">{{dataValidate[0].message}}</p><br>
+      <p class="text-center" style="font-weight: bolder;" *ngIf="isSuccess"> Tu numero de inscripcion es:</p>
+      <h1 *ngIf="isSuccess" class="text-center">{{dataValidate[0].data?.inscripcion}}</h1>
+      <p class="text-center" style="font-weight: bolder;" *ngIf="isSuccess"> {{dataValidate[0].data?.direccion}} - {{dataValidate[0].data?.complemento_direccion}}</p>
+      <p class="text-center" style="font-weight: bolder;" *ngIf="isSuccess"> {{dataValidate[0].data?.razon_social}}</p>
+
+
+  </div>
+</div>
+
+</div>
+
+<div class="col-md-12 mt-3">
+ <a routerLink="/" class="btn btn-link">Cancelar</a>
+</div>
+
+<div class="mt-8" *ngIf="isLoading">
+  <loader-gov></loader-gov>
+</div>

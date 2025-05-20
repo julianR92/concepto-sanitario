@@ -8,7 +8,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { MainModule } from '../main/main.module';
 import { ValidarComponent } from './pages/validar/validar.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectEstablecimientosComponent } from './pages/select-establecimientos/select-establecimientos.component';
 import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha-2';
 import { FinalizaComponent } from './pages/finaliza/finaliza.component';
@@ -25,6 +25,9 @@ import { RecomendacionesComponent } from './components/recomendaciones/recomenda
 import { FinalizaVisitaComponent } from './pages/finaliza-visita/finaliza-visita.component';
 import { InformacionVisitaComponent } from './pages/informacion-visita/informacion-visita.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { RecordarIvcComponent } from './pages/recordar-ivc/recordar-ivc.component';
+import { QuestionsComponent } from './pages/questions/questions.component';
+import { StepperComponent } from './components/stepper/stepper.component';
 
 
 
@@ -47,7 +50,10 @@ import { NgSelectModule } from '@ng-select/ng-select';
     FileUploadComponent,
     RecomendacionesComponent,
     FinalizaVisitaComponent,
-    InformacionVisitaComponent
+    InformacionVisitaComponent,
+    RecordarIvcComponent,
+    QuestionsComponent,
+    StepperComponent
   ],
   imports: [
     CommonModule,
@@ -60,7 +66,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     RouterModule,
     NgxDocViewerModule,
     PrimeNgModule,
-    NgSelectModule
+    NgSelectModule,
+    FormsModule
 
 
 

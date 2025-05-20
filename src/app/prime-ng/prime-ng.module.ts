@@ -8,6 +8,9 @@ import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { FileUploadModule } from 'primeng/fileupload';
 import { DropdownModule } from 'primeng/dropdown';
+import { StepperModule } from 'primeng/stepper';
+import { ButtonModule } from 'primeng/button';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 
 
@@ -32,7 +35,11 @@ import { DropdownModule } from 'primeng/dropdown';
     AvatarGroupModule,
     AvatarModule,
     FileUploadModule,
-    DropdownModule
+    DropdownModule,
+    StepperModule,
+    ButtonModule,
+    RadioButtonModule
+
 
 
 

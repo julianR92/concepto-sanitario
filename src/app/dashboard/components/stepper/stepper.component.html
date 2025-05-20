@@ -1,0 +1,77 @@
+<div class="mt-6">
+  <div class="flex justify-end mb-2">
+  <div class="px-3 py-1 text-sm bg-red-100 text-red-700 rounded-md shadow-sm font-mono">
+    Tiempo restante: {{ tiempoFormateado }}
+  </div>
+</div>
+<p-stepper class="w-full mt-3">
+  <p-stepperPanel
+    *ngFor="let pregunta of preguntas; let i = index"
+    [header]="'Pregunta ' + (i + 1)"
+  >
+    <ng-template
+      pTemplate="content"
+      let-nextCallback="nextCallback"
+      let-prevCallback="prevCallback"
+    >
+      <div class="flex flex-col gap-4">
+        <h3 class="text-lg font-semibold">{{ pregunta.enunciado }}</h3>
+      </div>
+
+
+        <div class="flex flex-wrap gap-2 mt-4">
+          <div
+            *ngFor="let opcion of pregunta.opciones; let j = index"
+            class="flex align-items-center"
+          >
+            <p-radioButton
+              [name]="opcion.campo"
+              [inputId]="'opcion-' + i + '-' + j"
+              [value]="opcion.descripcion"
+              [(ngModel)]="respuestasUsuario[i].value"
+              (onClick)="setRespuesta(i, opcion.campo, opcion.descripcion)"
+
+            ></p-radioButton>
+            <label [for]="'opcion-' + i + '-' + j" class="ml-2">{{
+              opcion.descripcion | lowercase
+            }}</label>
+          </div>
+        </div>
+
+        <div class="flex justify-between mt-6">
+          <!-- Botón "Anterior" -->
+          <p-button
+            *ngIf="i > 0"
+            label="Anterior"
+            icon="pi pi-arrow-left"
+            size="small"
+            severity="secondary"
+            (onClick)="prevCallback.emit()"
+          ></p-button>
+
+          <!-- Botón "Siguiente" -->
+          <p-button
+            *ngIf="i < preguntas.length - 1"
+            label="Siguiente"
+            icon="pi pi-arrow-right"
+            iconPos="right"
+            size="small"
+            [disabled]="!respuestasUsuario[i].value"
+            (onClick)="nextCallback.emit()"
+          ></p-button>
+
+          <!-- Botón "Enviar" -->
+          <p-button
+            *ngIf="i === preguntas.length - 1"
+            label="Enviar"
+            icon="pi pi-check"
+            iconPos="right"
+            size="small"
+            [disabled]="!respuestasUsuario[i].value"
+            (onClick)="enviar()"
+          ></p-button>
+        </div>
+    </ng-template>
+  </p-stepperPanel>
+</p-stepper>
+</div>

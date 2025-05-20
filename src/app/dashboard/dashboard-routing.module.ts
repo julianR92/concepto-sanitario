@@ -14,6 +14,8 @@ import { FinalizaAutoevaluacionComponent } from './pages/finaliza-autoevaluacion
 import { ValidarVisitaComponent } from './pages/validar-visita/validar-visita.component';
 import { FinalizaVisitaComponent } from './pages/finaliza-visita/finaliza-visita.component';
 import { InformacionVisitaComponent } from './pages/informacion-visita/informacion-visita.component';
+import { RecordarIvcComponent } from './pages/recordar-ivc/recordar-ivc.component';
+import { QuestionsComponent } from './pages/questions/questions.component';
 
 const routes: Routes = [
   {
@@ -69,6 +71,12 @@ const routes: Routes = [
   },
   {
     path: 'finaliza', component: FinalizaComponent
+  },
+  {
+    path: 'recordar-inscripcion', component: RecordarIvcComponent
+  },
+  {
+    path: 'preguntas-validacion', component: QuestionsComponent
   },
 
   { path: '**', redirectTo: '' },
