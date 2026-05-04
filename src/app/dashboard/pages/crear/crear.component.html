@@ -53,7 +53,7 @@
     <div class="col-md-3 mt-2">
         <div class="entradas-de-texto-govco">
           <label for="matricula_mercantil">Matricula Mercantil</label>
-           <input type="text" name="matricula_mercantil" id="matricula_mercantil"  formControlName="matricula_mercantil" [attr.readonly]="dataCec.length > 0 && dataCec[0].RadMatMer ? true : null" autocomplete="off">
+           <input type="text" name="matricula_mercantil" id="matricula_mercantil"  formControlName="matricula_mercantil" autocomplete="off">
           <span *ngIf="isValidField('matricula_mercantil')" class="form-text text-danger">
             {{ getFieldError("matricula_mercantil") }}
           </span>

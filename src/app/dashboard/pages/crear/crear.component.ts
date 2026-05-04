@@ -253,7 +253,7 @@ export class CrearComponent implements OnInit {
     ],
     matricula_mercantil: [
       '',
-      [Validators.maxLength(15), Validators.pattern(this.vs.numberScriptPattern)],
+      [Validators.maxLength(20), Validators.pattern(this.vs.matriculaPattern)],
     ],
     direccion_maeic: ['', []],
     numero_predial: ['', []],
