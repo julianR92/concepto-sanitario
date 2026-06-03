@@ -268,6 +268,9 @@ export class FormUpdateComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     if (this.myForm.invalid) {
+      console.log('INVALID:', Object.entries(this.myForm.controls)
+        .filter(([_, c]) => c.invalid)
+        .map(([k, c]) => ({ campo: k, errores: c.errors, valor: c.value })));
       this.myForm.markAllAsTouched();
       return;
     }
